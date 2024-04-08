@@ -1,0 +1,19 @@
+# Preparing directories and downloading data 
+
+## Objectives
+1. Create directories for storing your data 
+2. Download the reference genome of your choice 
+3. Download the SRA file for your species 
+
+## Create a directory for your species
+mkdir species_name
+
+## Download the reference genome from https://www.ncbi.nlm.nih.gov/genome/
+wget -O /vol/storage/swarmgenomics/Your_Name/species_name/reference.fna.gz link_to_the_file
+
+## Download the SRA file with prefetch
+prefetch accession_number 
+
+# If you get an error due to size
+prefetch --verbose --force all accession_number --max-size 50G 
+
