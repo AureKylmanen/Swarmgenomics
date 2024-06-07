@@ -1,0 +1,62 @@
+# NUMT Identification
+
+NUMTs, or Nuclear Mitochondrial DNA segments, are fragments of mitochondrial DNA (mtDNA) that have been inserted into the nuclear genome. These sequences arise through the transfer of mtDNA to the nucleus and can be found in many eukaryotic organisms. 
+The identification is done using the mitochondrial sequences identified in the mitochondrial reconstruction step and blasting them against the reference genome. This will create a fasta file with identified NUMTs.
+
+## Installations
+Here we again use miniconda for installing R, Blast and Bedtools. You will also need to save the get_bed.R script in your working directory.
+```
+# R
+conda create -n r_env r-essentials r-base
+conda activate r_env
+
+# Blast
+conda install bioconda::blast
+
+# Bedtools (you should already have this installed)
+conda install bioconda::bedtools
+```
+
+## Python script
+Make sure your get_bed.R sript has been saved in your working directory. You may also save the following script in a python script file and run it.
+```
+# Initiate python
+python
+
+#Edit the following script and run it with python
+#Example
+import os,sys
+import csv
+import pandas as pd
+import re
+
+dir_work = '/vol/storage/swarmGenomics/golden_eagle/'
+file_mito = '/vol/storage/swarmGenomics/golden_eagle/mt/ERR3316068_mitogenome/animal_mt.K115.scaffolds.graph1.1.path_sequence.fasta'
+file_genome = '/vol/storage/swarmGenomics/golden_eagle/acreference.fna'
+file_bedR = '/vol/storage/numt/get_bed2.R'
+species = 'Aquila_Chrysaetos'
+
+os.system('makeblastdb -in ' + file_mito + ' -parse_seqids -dbtype nucl')
+os.system('makeblastdb -in ' + file_genome + ' -parse_seqids -dbtype nucl')
+
+os.system('blastn -db '+ file_genome + ' -query '+ file_mito +' -outfmt 7 -word_size 20 -num_threads 1 -out ' + dir_work + species +'.blast.out')
+os.system("grep -v '#' " + dir_work + species +".blast.out | cut -d '\t' -f2,3,4,9,10 > " + dir_work + species + ".blast.clean.out")
+
+os.system('ls -1 ' + dir_work + species + '.blast.clean.out > ' + dir_work + 'files_list.txt')
+os.system('cp ' + file_bedR + ' ' + dir_work)
+os.system('Rscript get_bed2.R')
+os.system('rm get_bed2.R')
+
+os.system('bedtools getfasta -fi '+ file_genome +' -bed ' + dir_work + species + '.blast.clean.out_AllFrags.bed -fo ' + dir_work + species + '.sep.fa')
+
+#Exit python
+exit()
+```
+## Results
+The output is a file with identified NUMTs called species_name.sep.fa (e.g. Aquila_Chrysaetos.sep.fa).
+You can extract the number of NUMTs with grep:
+```
+#This counts the occurance of >, which is the start of each sequence
+grep -o ">" /vol/storage/swarmGenomics/golden_eagle/numt/Aquila_Chrysaetos.sep.fa | wc -l
+```
+
