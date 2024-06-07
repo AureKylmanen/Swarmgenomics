@@ -4,9 +4,9 @@ Pairwise Sequentially Markovian Coalescent (PSMC) model is a method used in gene
 
 Here we use software package from https://github.com/lh3/psmc
 
-### Downloading the software
+## Downloading the software
 
-#### PSMC
+### PSMC
 
 In your software directory (e.g. /vol/storage/software)
 ```
@@ -21,7 +21,7 @@ make
 cd utils
 make
 ```
-#### PSMC plot
+### PSMC plot
 In your psmc directory (e.g. /vol/storage/software/psmc)
 ```
 #clone the repository
@@ -31,7 +31,7 @@ git clone https://github.com/willyrv/ms-PSMC.git
 chmod +x ./*
 ```
 
-### Running PSMC
+# Running PSMC
 
 #### Convert fastq files to PSMC fasta format
 ```
@@ -53,7 +53,7 @@ utils/psmc2history.pl diploid.psmc | utils/history2ms.pl > ms-cmd.sh
 /vol/storage/psmc_plot_dir/psmc/utils/psmc2history.pl /vol/storage/swarmGenomics/golden_eagle/diploid.psmc | /vol/storage/psmc_plot_dir/psmc/utils/history2ms.pl > /vol/storage/swarmGenomics/golden_eagle/ms-cmd.sh
 ```
 
-#### Plot the results
+# Plot the results
 ```
 #Plot as pdf
 utils/psmc_plot.pl diploid diploid.psmc
