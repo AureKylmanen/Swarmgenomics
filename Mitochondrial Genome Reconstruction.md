@@ -1,4 +1,4 @@
-# Mitochondrial genome reconstruction
+# Mitochondrial Genome Reconstruction
 The mitochondrial genome is a small, circular DNA found in mitochondria, distinct from the nuclear genome. It is maternally inherited and highly conserved, making it a valuable target for genetic studies.
 
 Mitochrondial genome can be used for example in species identification, population genetics, forensic identification and biomedical purposes. Here we will use the constructed mitogenome in the identification of NUMTs in the following section.
