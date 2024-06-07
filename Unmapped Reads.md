@@ -1,4 +1,4 @@
-# Unmapped reads
+# Unmapped Reads
 Unmapped reads are sequences from high-throughput sequencing data that do not align to a reference genome during the alignment process. These reads can reveal information on microbial communities to structural variations and novel genetic sequences. 
 
 Utilizing tools like Kraken2 which can classify these reads, provide valuable insights into the broader genetic landscape of the samples. Kraken2 will create an output of a taxonomic classification of each read, helping to identify microbial species or other sources of the unmapped reads.
