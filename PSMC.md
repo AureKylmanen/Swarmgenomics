@@ -64,7 +64,7 @@ utils/psmc_plot.pl diploid diploid.psmc
 #Plot as png
 #copy plot_results.py to working directory
 
-cp psmc_plot.py ../golden_eagle/
+cp plot_results.py ../golden_eagle/
 
-python psmc_plot.py diploid diploid.psmc
+python plot_results.py diploid diploid.psmc
 ```
