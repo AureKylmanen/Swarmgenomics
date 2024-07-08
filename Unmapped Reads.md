@@ -38,7 +38,7 @@ For classifying the unmapped reads from a whole-genome sequencing project we use
 ##### Creating the input file
 ```
 # Unmapped reads
-samtools view -b -f 4  > unmapped.bam
+samtools view -b -f 4 bwa.sorted.bam > unmapped.bam
 
 # Change to fastq
 bedtools bamtofastq -i unmapped.bam -fq unmapped.fastq
