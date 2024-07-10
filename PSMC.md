@@ -61,10 +61,9 @@ utils/psmc_plot.pl diploid diploid.psmc
 #Example
 /vol/storage/psmc_plot_dir/psmc/utils/psmc_plot.pl -p /vol/storage/swarmGenomics/golden_eagle/diploid diploid.psmc
 
-#Plot as png
-#copy plot_results.py to working directory
 
-cp plot_results.py ../golden_eagle/
+# Plot as png
+# Download psmc_plot.py to your working directory
 
-python plot_results.py diploid diploid.psmc
+python psmc_plot.py diploid diploid.psmc
 ```
