@@ -68,7 +68,7 @@ kraken2 \
 --unclassified-out unclassifiedac \
 --confidence 0.1 \
 --threads 26 \
-unmapped.fasta
+unmapped.fastq
 ```
 
 ### Visualising the results
