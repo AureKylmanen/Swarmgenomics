@@ -248,7 +248,7 @@ cd /vol/storage/swarmGenomics/golden_eagle/RepeatMasker/RepeatMasker-RM2.0.4DFAM
 cp /vol/storage/swarmGenomics/golden_eagle/RepeatModeler2/$dbNAME-families.fa /vol/storage/swarmGenomics/golden_eagle/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$dbNAME-families.fa
 cp /vol/storage/swarmGenomics/golden_eagle/RepeatModeler2/$rnREF /vol/storage/swarmGenomics/golden_eagle/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$rnREF
 
-#Run RepeatMasler
+#Run RepeatMasker
 /vol/storage/software/RepeatMasker/RepeatMasker -e rmblast -gccalc -s -a -pa 26 -lib  /vol/storage/swarmGenomics/golden_eagle/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$dbNAME-families.fa /vol/storage/swarmGenomics/golden_eagle/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$rnREF
 
 #Create graphs
