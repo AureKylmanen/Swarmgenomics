@@ -1,7 +1,7 @@
 # Runs of Homozygosity
 Runs of Homozygosity (ROH) are continuous stretches of homozygous genotypes within an individual's genome, indicating that the segments are inherited from common ancestors. ROH can provide insights into the genetic history of populations, including levels of inbreeding, past population bottlenecks, and patterns of natural selection.
 ## Installations
-You should already have bcftools installed, otherwise you will only need to download the roh_plot.py script for plotting.
+You should already have bcftools installed, otherwise you will only need to download and edit the roh_plot.py script for plotting.
 
 ## ROH analysis
 
@@ -13,6 +13,9 @@ mkdir roh
 
 ### Running the script
 ```
+# Remember to edit the roh_plot.py to adjust the lst_file path 
+lst_file = glob.glob('/vol/storage/swarmGenomics/golden_eagle/roh/*.vcf.roh_chr.txt')
+
 # Change directory to vcf
 cd vcf
 
