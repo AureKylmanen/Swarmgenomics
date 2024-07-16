@@ -32,6 +32,8 @@ tar -xvzf k2_pluspf_16gb_20240112.tar.gz
 ```
 Depending on the size of the database, this may take hours.
 
+Download kreport2krona.py into your virtual machine.
+
 ### Classifying reads
 For classifying the unmapped reads from a whole-genome sequencing project we use the kraken2 command. You need to replace $DBPATH with the path to where you have saved the database and the name you gave the database. The input file is a fasta file of the unmapped reads. You can also choose the number of threads you want kraken2 to use. The flags --classified-out and --unclassified-out are optional.
 
@@ -74,6 +76,8 @@ unmapped.fastq
 ### Visualising the results
 You may then run the kreport2krona.py script which will produce an html file for visualising the results.
 ```
+# Copy kreport2krona.py into your directory
+# Run the plot
 python3 kreport2krona.py -r REPORTNAME -o SAMPLE.krona
 ktImportText SAMPLE.krona -o SAMPLE.krona.html
 
