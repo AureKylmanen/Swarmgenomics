@@ -47,8 +47,10 @@ bedtools bamtofastq -i unmapped.bam -fq unmapped.fastq
 ```
 
 ##### Running kraken2
-Activate kraken environment.
+Activate kraken environment and run the script.
 ```
+conda activate kraken
+
 kraken2 \
 --db ${DBPATH} \
 --output ${OUTPUTNAME} \
