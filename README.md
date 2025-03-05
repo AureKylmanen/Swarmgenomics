@@ -13,3 +13,6 @@ SwarmGenomics compromises of a step-by-step process of whole-genome assembly, fo
 ## Denbi
 https://cloud.denbi.de/
 
+## Workflow
+
+- [Installation](0.%20Installations.md)
