@@ -15,4 +15,4 @@ https://cloud.denbi.de/
 
 ## Get started
 
-Start with the [Installation](0.%20Installations.md) instruction and [prepare your data](01.%20Getting%20started.md). The you follow the course description in seqeunctial order.
+Start with the [Installation](0.%20Installations.md) instruction and [prepare your data](01.%20Getting%20started.md). The you follow the course description in sequential order.
