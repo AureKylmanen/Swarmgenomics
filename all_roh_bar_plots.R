@@ -14,12 +14,12 @@ colnames(roh_data) <- c("Type", "Sample", "Chromosome", "Start", "End", "Length_
 roh_data$Length_mb <- roh_data$Length_bp / 1e6
 
 # Step 3: Categorize ROHs into new size classes
-bins <- c(-Inf, 0.1, 1, 2, Inf) # Categories in Mb
-labels <- c(">0.1 Mbp", "0.1 - 1 Mbp", "1 - 2 Mbp", ">3 Mbp")
-roh_data$Size_category <- cut(roh_data$Length_mb, breaks = bins, labels = labels)
+bins <- c(0.01, 0.1, 1, 3, Inf)  # Updated breakpoints to start at 0.01
+labels <- c("10kbp - 0.1 Mbp", "0.1 - 1 Mbp", "1 - 3 Mbp", ">3 Mbp")  # Updated categories
+roh_data$Size_category <- cut(roh_data$Length_mb, breaks = bins, labels = labels, right=FALSE) 
 
 # Step 4: Aggregate data by size category (ensuring all categories exist)
-all_categories <- c(">0.1 Mbp", "0.1 - 1 Mbp", "1 - 2 Mbp", ">3 Mbp")  # Define all categories
+all_categories <- c("10kbp - 0.1 Mbp", "0.1 - 1 Mbp", "1 - 3 Mbp", ">3 Mbp")  # Define all categories
 
 summary <- roh_data %>%
     group_by(Size_category) %>%
@@ -28,8 +28,9 @@ summary <- roh_data %>%
         Total_length_mb = sum(Length_mb)
     ) %>%
     ungroup() %>%
-    complete(Size_category = factor(all_categories, levels = all_categories),  # Ensure all categories exist
-             fill = list(Total_count = 0, Total_length_mb = 0))  # Fill missing ones with 0
+    complete(Size_category = factor(all_categories, levels = all_categories),  
+             fill = list(Total_count = 0, Total_length_mb = 0)) %>%
+    filter(!is.na(Size_category))  # Remove NA rows
 
 # Define a common theme with increased font sizes and axis lines using linewidth
 custom_theme <- theme_minimal() +
