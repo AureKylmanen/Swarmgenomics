@@ -88,6 +88,7 @@ $BCFTOOLS/bcftools view ${WORKING_DIR}/${SPECIES}/output.vcf -Oz -o ${WORKING_DI
 tabix -p vcf ${WORKING_DIR}/${SPECIES}/output.vcf.gz
 
 # Step 14: Prepare chromosome-specific VCF files
+mkdir -p $VCF_DIR
 cd $VCF_DIR
 while read chr; do
     tabix -h ${WORKING_DIR}/${SPECIES}/output.vcf.gz $chr > ${chr}.vcf
