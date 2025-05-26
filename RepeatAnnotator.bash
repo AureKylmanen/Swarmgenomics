@@ -17,7 +17,7 @@ zcat $REFERENCE > $wDIR/RepeatModeler2/$rnREF
 $REPEATMODELER2/BuildDatabase -engine ncbi -name $dbNAME $wDIR/RepeatModeler2/$rnREF
 
 ##RepeatModeler
-$REPEATMODELER2/RepeatModeler -threads 24 -database $dbNAME -engine ncbi -genomeSampleSizeMax 243000000 -LTRStruct
+$REPEATMODELER2/RepeatModeler -threads 13 -database $dbNAME -engine ncbi -genomeSampleSizeMax 243000000 -LTRStruct
 
 rm -r $wDIR/RepeatModeler2/RM_*
 echo 'RepeatModeler2 Complete'
@@ -28,7 +28,7 @@ mkdir -p $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7
 cd $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7
 cp $wDIR/RepeatModeler2/$dbNAME-families.fa $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$dbNAME-families.fa
 cp $wDIR/RepeatModeler2/$rnREF $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$rnREF
-$REPEATMASKER/RepeatMasker -e rmblast -gccalc -s -a -pa 24 -lib  $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$dbNAME-families.fa $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$rnREF
+$REPEATMASKER/RepeatMasker -e rmblast -gccalc -s -a -pa 13 -lib  $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$dbNAME-families.fa $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$rnREF
 
 GENOMESIZE=`grep -v ">" $wDIR/RepeatMasker/RepeatMasker-RM2.0.4DFAM3.7/$rnREF | perl -pe -chomp | wc -m`
 
