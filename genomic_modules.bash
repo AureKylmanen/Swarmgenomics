@@ -114,12 +114,9 @@ ${PSMC_UTILS}/fq2psmcfa -q20 "${DIPLOID_FASTQ}" > "${DIPLOID_PSMCFA}"
 
 "${PSMC_UTILS}/psmc_plot.pl" -p "${WORKING_DIR}/${SPECIES}/diploid" "${DIPLOID_PSMC}"
 
-# Step 9: Final PSMC plots as PNG
-python "${WORKING_DIR}/${SPECIES}/psmc_plot.py" diploid "${DIPLOID_PSMC}"
-
 # Copy all final PSMC outputs
 cp "${DIPLOID_PSMCFA}" "${DIPLOID_PSMC}" "${WORKING_DIR}/${SPECIES}_ms-cmd.sh" \
-   diploid.* *.png "${RESULTS_DIR}/" 2>/dev/null
+   diploid.* "${RESULTS_DIR}/" 2>/dev/null
   
 
 echo "All analysis complete. Results are saved in ${RESULTS_DIR}/"
