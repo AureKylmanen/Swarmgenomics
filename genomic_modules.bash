@@ -26,7 +26,7 @@ IDXSTATS_INPUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_idxstats_output.txt"
 IDXSTATS_CSV="${WORKING_DIR}/${SPECIES}/idxstats_clean.csv"
 HET_RESULTS="heterozygosity_results.txt"
 RoH_PLOT="${WORKING_DIR}/${SPECIES}/all_roh_bar_plots.R"
-idxstats_PLOT="${WORKING_DIR}/${SPECIES}/idxstats_plot.R"
+idxstats_PLOT="${WORKING_DIR}/${SPECIES}/idxstats_summary_plot.R"
 
 # Create necessary directories
 mkdir -p "${VCF_HET_DIR}" "${ROH_DIR}" "${RESULTS_DIR}"
