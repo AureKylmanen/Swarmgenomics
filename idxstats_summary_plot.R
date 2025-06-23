@@ -32,7 +32,8 @@ idx_merged <- idx %>%
     chrom = factor(chrom, levels = chrom),
     unmapped_per_mbp = unmapped / (length / 1e6),
     coverage = (mapped * read_length) / length
-  )
+  ) %>%
+  slice_head(n = 20)
 
 # Custom theme for all plots
 custom_theme <- theme_minimal() +
