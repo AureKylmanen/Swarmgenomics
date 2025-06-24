@@ -24,7 +24,8 @@ het_sorted <- het %>%
   arrange(desc(Length)) %>%
   mutate(chrom = factor(Chromosome, levels = Chromosome))
 
-# Merge heterozygosity info into idxstats
+# Merge heterozygosity info into idxstats and select only 20 largest scaffolds
+# Edit slice_head(n = 20) to alter the number of scaffods
 idx_merged <- idx %>%
   inner_join(het_sorted, by = c("chrom" = "Chromosome")) %>%
   arrange(desc(Length)) %>%
