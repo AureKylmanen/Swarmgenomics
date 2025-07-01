@@ -32,18 +32,18 @@ cols <- brewer.pal(8, "Set2")  # distinctive & colorblind-friendly
 
 # Plot 1: Chromosome Length Bar Plot
 p1 <- ggplot(top_chr, aes(x = chrom, y = length / 1e6)) +  # Convert length to Mbp
-  geom_bar(stat = "identity", fill = cols[1]) +
+  geom_bar(stat = "identity", fill = cols[1], width = 0.7) +
   theme_classic() +  # Using classic theme
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.line = element_line(color = "black", linewidth = 0.5),  # Use linewidth instead of size
         plot.margin = margin(10, 10, 10, 10)) +  # Add margin to avoid clipping
-  labs(title = "Top 20 Chromosome Lengths",
+  labs(title = "Top 20 Scaffold Lengths",
        x = NULL, y = "Length (Mbp)") +
   scale_y_continuous(expand = c(0, 0))
 
 # Plot 2: Unmapped Reads per Mbp per Chromosome
 p2 <- ggplot(top_chr, aes(x = chrom, y = unmapped_per_mbp)) +
-  geom_bar(stat = "identity", fill = cols[2]) +
+  geom_bar(stat = "identity", fill = cols[2], width = 0.7) +
   theme_classic() +  # Using classic theme
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.line = element_line(color = "black", linewidth = 0.5),  # Use linewidth instead of size
@@ -54,7 +54,7 @@ p2 <- ggplot(top_chr, aes(x = chrom, y = unmapped_per_mbp)) +
 
 # Plot 3: Coverage Bar Plot
 p3 <- ggplot(top_chr, aes(x = chrom, y = coverage)) +
-  geom_bar(stat = "identity", fill = cols[4]) +
+  geom_bar(stat = "identity", fill = cols[4], width = 0.7) +
   theme_classic() +  # Using classic theme
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         axis.line = element_line(color = "black", linewidth = 0.5),  # Use linewidth instead of size
