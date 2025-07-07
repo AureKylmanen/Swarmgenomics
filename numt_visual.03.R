@@ -12,14 +12,14 @@ library(Biostrings)
 library(circlize)
 library(stringr)
 
-dir_work <- '/vol/storage/newdisk/giant_panda/'
+dir_work <- '/path/to/working/dir/'
 setwd(dir_work)
 
 # mito genes annotations
-mt_seq <- readDNAStringSet('animal_mt.K115.complete.graph1.1.path_sequence.fasta')
+mt_seq <- readDNAStringSet('**.path_sequence.fasta')
 len <- width(mt_seq)
 
-mt_info <- read.table('extended_K115.assembly_graph.fastg.extend-animal_mt.csv', header = T, stringsAsFactors = F)
+mt_info <- read.table('*.csv', header = T, stringsAsFactors = F)
 mt_region <- mt_info$details
 
 numt_loc <- read.table('mt_loc.lst', header = F, stringsAsFactors = F)
