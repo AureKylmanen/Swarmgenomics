@@ -63,8 +63,8 @@ p3 <- ggplot(top_chr, aes(x = chrom, y = coverage)) +
        x = "Chromosome", y = "Coverage (X)") +
   scale_y_continuous(expand = c(0, 0))
 
-# Combine all plots into one PNG (stacked bar plot + other plots)
-combined_plot <- p1 / p2 / p3 + plot_layout(ncol = 1)
+# Save each plot individually
+ggsave("plot1_scaffold_lengths.png", plot = p1, width = 10, height = 6, dpi = 300)
+ggsave("plot2_unmapped_reads_per_mbp.png", plot = p2, width = 10, height = 6, dpi = 300)
+ggsave("plot3_coverage.png", plot = p3, width = 10, height = 6, dpi = 300)
 
-# Save the combined plot as a PNG
-ggsave("idxstats_summary.png", combined_plot, width = 12, height = 12)
