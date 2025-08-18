@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Directory containing VCF files
-VCF_DIR="/vol/storage/swarmGenomics/giant_panda/vcf_het"
+VCF_DIR="/vol/storage/swarmGenomics/giant_panda/vcf"
 OUTPUT_FILE="heterozygosity_results.txt"
+BCFTOOLS="/vol/storage/software/bcftools-1.19"
 
 # Remove the output file if it exists
 rm -f $OUTPUT_FILE
@@ -16,7 +17,7 @@ for vcf_file in "$VCF_DIR"/*.vcf; do
     chrom=$(basename "$vcf_file" .vcf)
     
     # Calculate heterozygosity using FORMAT/GT
-    heterozygosity=$(/vol/storage/bcftools-1.19/bcftools query -f '[%GT\n]' "$vcf_file" | \
+    heterozygosity=$($BCFTOOLS/bcftools query -f '[%GT\n]' "$vcf_file" | \
                      awk 'BEGIN {het=0; hom=0} 
                           {if ($0 == "0/1" || $0 == "1/0") het+=1; else if ($0 == "0/0" || $0 == "1/1") hom+=1} 
                           END {if (het+hom > 0) print het/(het+hom); else print 0}')
