@@ -2,7 +2,7 @@
 
 # Directory containing VCF files
 VCF_DIR="/vol/storage/swarmGenomics/giant_panda/vcf"
-OUTPUT_FILE="heterozygosity_results.txt"
+OUTPUT_FILE="/vol/storage/swarmGenomics/giant_panda/heterozygosity_results.txt"
 BCFTOOLS="/vol/storage/software/bcftools-1.19"
 
 # Remove the output file if it exists
