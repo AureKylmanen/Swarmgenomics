@@ -8,7 +8,7 @@ SwarmGenomics compromises of a step-by-step process of whole-genome assembly, fo
 
 
 ## Overview
-![SwarmGenomics](https://github.com/user-attachments/assets/ddd4d93c-07fc-44ff-9fd6-ac36f14c74ba)
+<img width="5113" height="2625" alt="swarmgenomics_pipeline" src="https://github.com/user-attachments/assets/f1b051a2-4cdf-4a0f-87c7-a97968415f1f" />
 
 
 ## Denbi
