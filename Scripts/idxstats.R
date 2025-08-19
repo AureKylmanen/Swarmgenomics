@@ -64,7 +64,7 @@ p3 <- ggplot(top_chr, aes(x = chrom, y = coverage)) +
   scale_y_continuous(expand = c(0, 0))
 
 # Save each plot individually
-ggsave("plot1_scaffold_lengths.png", plot = p1, width = 10, height = 6, dpi = 300)
-ggsave("plot2_unmapped_reads_per_mbp.png", plot = p2, width = 10, height = 6, dpi = 300)
-ggsave("plot3_coverage.png", plot = p3, width = 10, height = 6, dpi = 300)
+ggsave("idxstats_scaffold_lengths.png", plot = p1, width = 10, height = 6, dpi = 300)
+ggsave("idxstats_unmapped_reads_per_mbp.png", plot = p2, width = 10, height = 6, dpi = 300)
+ggsave("idxstats_coverage.png", plot = p3, width = 10, height = 6, dpi = 300)
 
