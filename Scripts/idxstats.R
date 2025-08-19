@@ -18,7 +18,7 @@ data <- read.csv(input_file)
 # Prepare data with unmapped reads and coverage
 top_chr <- data %>%
   arrange(desc(length)) %>%
-  slice(1:20) %>%
+  slice(1:20) %>% # Remove or edit this to change how many scaffolds are plotted
   mutate(
     chrom = factor(chrom, levels = chrom),  # preserve order
     unmapped_per_mbp = unmapped / (length / 1e6),  # Unmapped reads per Mbp
