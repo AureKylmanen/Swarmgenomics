@@ -1,6 +1,10 @@
 # Frequently asked questions
 This section addresses common questions and issues you might encounter while using SwarmGenomics. It’s designed to help you get started quickly, troubleshoot common problems, and better understand how to use the different modules. If you don’t find your question here, please open an issue on the GitHub repository or check the documentation for the specific tool.
 
+### Can I use the pipeline for [X] species?
+
+SwarmGenomics is currently optimized for diploid species. While it may run on polyploid organisms, this can lead to inaccurate results due to incorrect assumptions about genome structure and heterozygosity. 
+
 ### What input files do I need?
 
 Running through whole SwarmGenomics requires a reference genome and raw sequencing reads as SRA file or FASTQ. Most modules require a BAM, VCF, or FASTQ file, depending on the analysis step. Each module’s documentation specifies the required input.
@@ -8,6 +12,10 @@ Running through whole SwarmGenomics requires a reference genome and raw sequenci
 ### Can I use my own BAM/VCF/FASTQ files?
 
 Yes. You can use files you’ve generated previously, as long as they are formatted correctly. Alternatively, you can follow the SwarmGenomics pipeline to generate them.
+
+### Is there a recommended sequencing depth or genome size limit for using the pipeline effectively?
+
+SwarmGenomics works best with sequencing coverage around 20–30× for the diploid individual to ensure reliable results. It can be run on lower coverage data, but results may be less accurate and less reliable. There is no strict genome size limit, though larger genomes will require more computational resources.
 
 ### I don’t have access to a powerful computer. Can I still run this?
 
