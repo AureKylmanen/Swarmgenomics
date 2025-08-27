@@ -106,12 +106,15 @@ for file in *_filtered.recode.vcf; do
 done
 
 # Step 17: Generate consensus fastq files for large chromosomes
+cd $VCF_DIR
 while read chr; do
-    samtools faidx ${GENOME_FILE%.gz} $chr | \
+    echo "Processing $chr..."
+    samtools faidx ${GENOME_FILE%.gz} "$chr" > "${chr}.fa"
     $BCFTOOLS/bcftools consensus \
-        -f ${GENOME_FILE%.gz} \
-        ${chr}_filtered.recode.vcf.gz > ${chr}.fq
-done < $TARGET_LEN
+        -f "${chr}.fa" \
+        "${chr}_filtered.recode.vcf.gz" | \
+    seqtk seq -F 'I' - > "${chr}.fq" || echo "FAILED: $chr"
+done < "$TARGET_LEN"
 
 # Step 18: Concatenate and gzip final FASTQ
 cat *.fq > diploid.fq
