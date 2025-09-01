@@ -39,8 +39,8 @@ The table below shows which types of input data can be used for each SwarmGenomi
 
 | Input \ Module       | Genome features | Heterozygosity | Runs of Homozygosity | Genome visualisation | PSMC | Mitogenome assembly | NUMT identification | Repeat analysis | Unmapped reads |
 | -------------------- | --------------- | -------------- | -------------------- | -------------------- | ---- | ------------------- | ------------------- | --------------- | -------------- |
-| **BAM**              | X               | (✓)            | (✓)                  | X                    | (✓)  |                     |                     |                 | X              |
+| **BAM**              | X               | (✓)            | (✓)                  | X                    | (✓)  |                     |                     |                | X              |
 | **VCF**              |                 | X              | X                    | X                    | X    |                     |                     |                 |                |
-| **FASTQ**            |                 |                |                      |                      |      | X                   |                     |                 |                |
+| **FASTQ**            | (✓)             |  (✓)          |   (✓)                |                       |(✓)   | X                   |                     |                 | (✓)           |
 | **Reference genome** |                 |                |                      | X                    |      |                     | X                   | X               |                |
 | **Mitogenome**       |                 |                |                      |                      |      |                     | X                   |                 |                |
