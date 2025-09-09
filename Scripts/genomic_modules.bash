@@ -8,7 +8,6 @@ SPECIES=$1
 # Directories
 WORKING_DIR="/vol/storage/swarmgenomics" # Change this
 VCF_DIR="${WORKING_DIR}/${SPECIES}/vcf"
-ROH_DIR="${WORKING_DIR}/${SPECIES}/roh"
 RESULTS_DIR="${WORKING_DIR}/${SPECIES}/results"
 
 # Tools
