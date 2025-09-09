@@ -8,7 +8,6 @@ SPECIES=$1
 # Directories
 WORKING_DIR="/vol/storage/swarmgenomics" # Change this
 VCF_DIR="${WORKING_DIR}/${SPECIES}/vcf"
-VCF_HET_DIR="${WORKING_DIR}/${SPECIES}/vcf_het"
 ROH_DIR="${WORKING_DIR}/${SPECIES}/roh"
 RESULTS_DIR="${WORKING_DIR}/${SPECIES}/results"
 
@@ -24,9 +23,10 @@ DIPLOID_PSMCFA="${WORKING_DIR}/${SPECIES}/diploid.psmcfa"
 DIPLOID_PSMC="${WORKING_DIR}/${SPECIES}/diploid.psmc"
 IDXSTATS_INPUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_idxstats_output.txt"
 IDXSTATS_CSV="${WORKING_DIR}/${SPECIES}/idxstats_clean.csv"
-HET_RESULTS="heterozygosity_results.txt"
+HET_RESULTS="${WORKING_DIR}/${SPECIES}/${VCF_DIR}/heterozygosity_results.txt"
 RoH_PLOT="${WORKING_DIR}/${SPECIES}/all_roh_bar_plots.R"
-idxstats_PLOT="${WORKING_DIR}/${SPECIES}/idxstats_summary_plot.R"
+HET_PLOT="${WORKING_DIR}/${SPECIES}/plot_heterozygosity.R"
+idxstats_PLOT="${WORKING_DIR}/${SPECIES}/idxstats.R"
 
 # Create necessary directories
 mkdir -p "${VCF_HET_DIR}" "${ROH_DIR}" "${RESULTS_DIR}"
@@ -58,16 +58,13 @@ awk '/^# RG/ {print; seen=1} seen && /^RG/' roh_results.txt > RG.txt
 Rscript "${RoH_PLOT}"
 cp roh_results.txt RG.txt roh_bar_plots.png "${RESULTS_DIR}/" 2>/dev/null
 
-# Step 3: Copy VCF files for heterozygosity calculations
-cp *.vcf "${VCF_HET_DIR}"
-
-# Step 4: Calculate heterozygosity
+# Step 3: Calculate heterozygosity
 echo "Calculating heterozygosity..."
-cd "${VCF_HET_DIR}"
+cd "${VCF_DIR}"
 rm -f ${HET_RESULTS}
 echo -e "Chromosome\tHeterozygosity\tLength" >> ${HET_RESULTS}
 
-for vcf_file in "${VCF_HET_DIR}"/*.vcf; do
+for vcf_file in "${VCF_DIR}"/*.vcf; do
     chrom=$(basename "$vcf_file" .vcf)
     scaffold_length=$(grep -m 1 -oP "(?<=##contig=<ID=$chrom,length=)\d+" "$vcf_file")
 
@@ -89,7 +86,7 @@ echo "Heterozygosity calculation complete."
 # Step 5: Plot heterozygosity results
 if [ -f "${HET_RESULTS}" ]; then
     echo "Plotting heterozygosity results..."
-    Rscript "${WORKING_DIR}/${SPECIES}/plot_heterozygosity.R"
+    Rscript "${HET_PLOT}"
     cp "${HET_RESULTS}" heterozygosity_top_20_longest_plot.png "${RESULTS_DIR}/" 2>/dev/null
 else
     echo "Heterozygosity results file not found!"
@@ -98,7 +95,7 @@ fi
 
 
 # Step 1: Run idxstats R plotting
-Rscript "${idxstats_PLOT}" "${RESULTS_DIR}/idxstats_clean.csv" "${RESULTS_DIR}/heterozygosity_results.txt" $READ_LENGTH
+Rscript "${idxstats_PLOT}" "${RESULTS_DIR}/idxstats_clean.csv" $READ_LENGTH
 
 
 # Step 6: Prepare input for PSMC
@@ -110,12 +107,12 @@ ${PSMC_UTILS}/fq2psmcfa -q20 "${DIPLOID_FASTQ}" > "${DIPLOID_PSMCFA}"
 
 # Step 8: Generate PSMC historical scripts and plots
 "${PSMC_UTILS}/psmc2history.pl" "${DIPLOID_PSMC}" | \
-"${PSMC_UTILS}/history2ms.pl" > "${WORKING_DIR}/${SPECIES}_ms-cmd.sh"
+"${PSMC_UTILS}/history2ms.pl" > "${WORKING_DIR}/${SPECIES}/${SPECIES}_ms-cmd.sh"
 
 "${PSMC_UTILS}/psmc_plot.pl" -p "${WORKING_DIR}/${SPECIES}/diploid" "${DIPLOID_PSMC}"
 
 # Copy all final PSMC outputs
-cp "${DIPLOID_PSMCFA}" "${DIPLOID_PSMC}" "${WORKING_DIR}/${SPECIES}_ms-cmd.sh" \
+cp "${DIPLOID_PSMCFA}" "${DIPLOID_PSMC}" "${WORKING_DIR}/${SPECIES}/${SPECIES}_ms-cmd.sh" \
    diploid.* "${RESULTS_DIR}/" 2>/dev/null
   
 
