@@ -1,0 +1,2 @@
+SwarmGenomics — data_info.txt
+(See the site Data page for column descriptions, number formats, and provenance.)

@@ -1,0 +1,10 @@
+
+:root{ --brand:#6c5ce7; }
+.navbar, .quarto-title-banner { backdrop-filter: saturate(150%) blur(6px); }
+.btn, .card { border-radius: 1rem; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+.badge-brand{ background:var(--brand); }
+#hero .btn { padding:.75rem 1rem; font-weight:600; }
+/* Wide DT tables */
+.dataTables_wrapper, table.dataTable { width: 100% !important; }
+.main-content, .content, .page-content { max-width: 100% !important; }
+table.dataTable td, table.dataTable th { white-space: nowrap; }

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Explore – SwarmGenomics — Pipeline &amp; Data Portal</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d24c3880db9ce3ca4ea2d5bb002bea1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="styles.scss">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">SwarmGenomics — Pipeline &amp; Data Portal</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data.html"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./github.html"> 
+<span class="menu-text">GitHub Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./teaching_slides.html"> 
+<span class="menu-text">Teaching Slides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./explore.html" aria-current="page"> 
+<span class="menu-text">Explore</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Explore</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Explore</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- Client-side libs -->
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simple-statistics/7.8.3/simple-statistics.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.6/jstat.min.js"></script>
+<p>Interactively explore variables from <strong>data/all_info.txt</strong> (tab‑delimited).<br>
+Choose X/Y axes, color (e.g., <strong>Class</strong>), subset by <strong>Class</strong>, optionally highlight a <strong>Species</strong> (without filtering), toggle <strong>log scales</strong>, and add a <strong>regression line</strong> with <em>r</em> and <em>p</em>.</p>
+<div class="cell">
+<div class="cell-output-display no-overflow-x">
+<p>
+<em>Using data from: data/all_info.txt</em>
+</p>
+<div class="mb-2">
+<label>X-axis:</label>
+<select id="xvar" class="form-select d-inline-block w-auto">
+<option value="avg. heterozygosity">avg. heterozygosity</option>
+<option value="bodysize">bodysize</option>
+<option value="Repeats">Repeats</option>
+<option value="NUMTs">NUMTs</option>
+<option value="Genome Length">Genome Length</option>
+<option value="Num ROHs">Num ROHs</option>
+<option value="Total ROH Length">Total ROH Length</option>
+</select>
+<span class="ms-3"></span>
+<label>Y-axis:</label>
+<select id="yvar" class="form-select d-inline-block w-auto">
+<option value="avg. heterozygosity">avg. heterozygosity</option>
+<option value="bodysize">bodysize</option>
+<option value="Repeats">Repeats</option>
+<option value="NUMTs">NUMTs</option>
+<option value="Genome Length">Genome Length</option>
+<option value="Num ROHs">Num ROHs</option>
+<option value="Total ROH Length">Total ROH Length</option>
+</select>
+<span class="ms-3"></span>
+<label>Color:</label>
+<select id="cvar" class="form-select d-inline-block w-auto">
+<option value="Species">Species</option>
+<option value="avg. heterozygosity">avg. heterozygosity</option>
+<option value="bodysize">bodysize</option>
+<option value="Repeats">Repeats</option>
+<option value="NUMTs">NUMTs</option>
+<option value="Genome Length">Genome Length</option>
+<option value="Num ROHs">Num ROHs</option>
+<option value="Total ROH Length">Total ROH Length</option>
+<option value="Class">Class</option>
+</select>
+</div>
+<div class="mb-2">
+<label>Class filter:</label>
+<select id="classFilter" class="form-select d-inline-block w-auto">
+<option value="__ALL__">All</option>
+<option value="mammal">mammal</option>
+<option value="bird">bird</option>
+</select>
+<span class="ms-3"></span>
+<label>Highlight species:</label>
+<select id="speciesHi" class="form-select d-inline-block w-auto">
+<option value="__NONE__">None</option>
+<option value="Alpine marmot">Alpine marmot</option>
+<option value="Asian elephant">Asian elephant</option>
+<option value="Blue tit">Blue tit</option>
+<option value="Blue whale">Blue whale</option>
+<option value="Bottlenose dolphin">Bottlenose dolphin</option>
+<option value="Chicken">Chicken</option>
+<option value="Common parakeet">Common parakeet</option>
+<option value="Common wombat">Common wombat</option>
+<option value="Echidna">Echidna</option>
+<option value="Emperor penguin">Emperor penguin</option>
+<option value="European rabbit">European rabbit</option>
+<option value="Giant panda high">Giant panda high</option>
+<option value="Giant panda low">Giant panda low</option>
+<option value="Golden eagle">Golden eagle</option>
+<option value="Great tit">Great tit</option>
+<option value="Lion">Lion</option>
+<option value="Platypus">Platypus</option>
+<option value="Snowy owl">Snowy owl</option>
+<option value="Southern ostritch">Southern ostritch</option>
+<option value="Spoon-billed sandpiper">Spoon-billed sandpiper</option>
+<option value="Sunda pangolin">Sunda pangolin</option>
+</select>
+</div>
+<div class="mb-2">
+<div class="form-check">
+<input type="checkbox" class="form-check-input" id="logx">
+<label class="form-check-label" for="logx">log X</label>
+</div>
+<div class="form-check">
+<input type="checkbox" class="form-check-input" id="logy">
+<label class="form-check-label" for="logy">log Y</label>
+</div>
+<div class="form-check">
+<input type="checkbox" class="form-check-input" id="showfit">
+<label class="form-check-label" for="showfit">regression line (show r, p)</label>
+</div>
+</div>
+<div id="explore-plot"></div>
+<div id="stats-panel" class="mt-2 small text-muted"></div>
+<script>window.SWARM_DF = [{"Species":"Alpine marmot","avg. heterozygosity":0.000255268,"bodysize":5,"Repeats":29.739999999999998,"NUMTs":69,"Genome Length":2257269818,"Num ROHs":1448,"Total ROH Length":144536590,"Class":"mammal"},{"Species":"Asian elephant","avg. heterozygosity":0.000686919,"bodysize":3100,"Repeats":51.200000000000003,"NUMTs":108,"Genome Length":3369292286,"Num ROHs":3330,"Total ROH Length":141138534,"Class":"mammal"},{"Species":"Blue tit","avg. heterozygosity":0.00384677,"bodysize":0.011,"Repeats":8.52,"NUMTs":11,"Genome Length":973796202,"Num ROHs":335,"Total ROH Length":3096013,"Class":"bird"},{"Species":"Blue whale","avg. heterozygosity":0.00214007,"bodysize":160000,"Repeats":36.719999999999999,"NUMTs":208,"Genome Length":2368426609,"Num ROHs":9414,"Total ROH Length":239584750,"Class":"mammal"},{"Species":"Bottlenose dolphin","avg. heterozygosity":0.00101715,"bodysize":280,"Repeats":null,"NUMTs":null,"Genome Length":2342900125,"Num ROHs":null,"Total ROH Length":null,"Class":"mammal"},{"Species":"Chicken","avg. heterozygosity":0.00408792,"bodysize":7,"Repeats":13.619999999999999,"NUMTs":10,"Genome Length":1017373226,"Num ROHs":4062,"Total ROH Length":195495680,"Class":"bird"},{"Species":"Common parakeet","avg. heterozygosity":0.00324826,"bodysize":0.028,"Repeats":13.58,"NUMTs":11,"Genome Length":1085400037,"Num ROHs":64,"Total ROH Length":2015289,"Class":"bird"},{"Species":"Common wombat","avg. heterozygosity":0.00182322,"bodysize":21,"Repeats":null,"NUMTs":null,"Genome Length":3066323319,"Num ROHs":3457,"Total ROH Length":1086321185,"Class":"mammal"},{"Species":"Echidna","avg. heterozygosity":0.00393201,"bodysize":2,"Repeats":null,"NUMTs":null,"Genome Length":2102147521,"Num ROHs":95,"Total ROH Length":1601630,"Class":"mammal"},{"Species":"Emperor penguin","avg. heterozygosity":0.00137942,"bodysize":31.5,"Repeats":6,"NUMTs":24,"Genome Length":629093285,"Num ROHs":591,"Total ROH Length":20530956,"Class":"bird"},{"Species":"European rabbit","avg. heterozygosity":0.00139674,"bodysize":1.6,"Repeats":43.039999999999999,"NUMTs":76,"Genome Length":2751015428,"Num ROHs":3806,"Total ROH Length":198181167,"Class":"mammal"},{"Species":"Giant panda high","avg. heterozygosity":0.00139539,"bodysize":100,"Repeats":30.670000000000002,"NUMTs":50,"Genome Length":2294400319,"Num ROHs":10,"Total ROH Length":1673041,"Class":"mammal"},{"Species":"Giant panda low","avg. heterozygosity":0.000808525,"bodysize":100,"Repeats":30.670000000000002,"NUMTs":50,"Genome Length":2294400319,"Num ROHs":4846,"Total ROH Length":369839430,"Class":"mammal"},{"Species":"Golden eagle","avg. heterozygosity":0.00151678,"bodysize":5,"Repeats":8.9,"NUMTs":12,"Genome Length":1215614160,"Num ROHs":1962,"Total ROH Length":647833177,"Class":"bird"},{"Species":"Great tit","avg. heterozygosity":0.00533019,"bodysize":0.018,"Repeats":7.02,"NUMTs":6,"Genome Length":987035201,"Num ROHs":1946,"Total ROH Length":47617542,"Class":"bird"},{"Species":"Lion","avg. heterozygosity":9.96e-05,"bodysize":150,"Repeats":32.890000000000001,"NUMTs":62,"Genome Length":2288568809,"Num ROHs":829,"Total ROH Length":1857191967,"Class":"mammal"},{"Species":"Platypus","avg. heterozygosity":0.00015583,"bodysize":2,"Repeats":51.600000000000001,"NUMTs":47,"Genome Length":1813343107,"Num ROHs":857,"Total ROH Length":1496387362,"Class":"mammal"},{"Species":"Snowy owl","avg. heterozygosity":0.000546948,"bodysize":2,"Repeats":10.34,"NUMTs":25,"Genome Length":999613802,"Num ROHs":350,"Total ROH Length":502605680,"Class":"bird"},{"Species":"Southern ostritch","avg. heterozygosity":0.00182769,"bodysize":110,"Repeats":5.19,"NUMTs":10,"Genome Length":445311711,"Num ROHs":9,"Total ROH Length":1615040,"Class":"bird"},{"Species":"Spoon-billed sandpiper","avg. heterozygosity":0.0015455,"bodysize":0.03,"Repeats":null,"NUMTs":null,"Genome Length":366180695,"Num ROHs":5138,"Total ROH Length":65660131,"Class":"bird"},{"Species":"Sunda pangolin","avg. heterozygosity":0.00185366,"bodysize":4,"Repeats":27.390000000000001,"NUMTs":120,"Genome Length":1972179825,"Num ROHs":3928,"Total ROH Length":556929115,"Class":"mammal"}]; window.SWARM_ORIG = [{"Species":"Alpine marmot","avg. heterozygosity":0.0003,"bodysize":5,"Repeats":29.74,"NUMTs":69,"Genome Length":2257269818,"Num ROHs":1448,"Total ROH Length":144536590,"Class":"mammal"},{"Species":"Asian elephant","avg. heterozygosity":0.0007,"bodysize":3100,"Repeats":51.2,"NUMTs":108,"Genome Length":3369292286,"Num ROHs":3330,"Total ROH Length":141138534,"Class":"mammal"},{"Species":"Blue tit","avg. heterozygosity":0.0038,"bodysize":0.011,"Repeats":8.52,"NUMTs":11,"Genome Length":973796202,"Num ROHs":335,"Total ROH Length":3096013,"Class":"bird"},{"Species":"Blue whale","avg. heterozygosity":0.0021,"bodysize":160000,"Repeats":36.72,"NUMTs":208,"Genome Length":2368426609,"Num ROHs":9414,"Total ROH Length":239584750,"Class":"mammal"},{"Species":"Bottlenose dolphin","avg. heterozygosity":0.001,"bodysize":280,"Repeats":null,"NUMTs":null,"Genome Length":2342900125,"Num ROHs":null,"Total ROH Length":null,"Class":"mammal"},{"Species":"Chicken","avg. heterozygosity":0.0041,"bodysize":7,"Repeats":13.62,"NUMTs":10,"Genome Length":1017373226,"Num ROHs":4062,"Total ROH Length":195495680,"Class":"bird"},{"Species":"Common parakeet","avg. heterozygosity":0.0032,"bodysize":0.028,"Repeats":13.58,"NUMTs":11,"Genome Length":1085400037,"Num ROHs":64,"Total ROH Length":2015289,"Class":"bird"},{"Species":"Common wombat","avg. heterozygosity":0.0018,"bodysize":21,"Repeats":null,"NUMTs":null,"Genome Length":3066323319,"Num ROHs":3457,"Total ROH Length":1086321185,"Class":"mammal"},{"Species":"Echidna","avg. heterozygosity":0.0039,"bodysize":2,"Repeats":null,"NUMTs":null,"Genome Length":2102147521,"Num ROHs":95,"Total ROH Length":1601630,"Class":"mammal"},{"Species":"Emperor penguin","avg. heterozygosity":0.0014,"bodysize":31.5,"Repeats":6,"NUMTs":24,"Genome Length":629093285,"Num ROHs":591,"Total ROH Length":20530956,"Class":"bird"},{"Species":"European rabbit","avg. heterozygosity":0.0014,"bodysize":1.6,"Repeats":43.04,"NUMTs":76,"Genome Length":2751015428,"Num ROHs":3806,"Total ROH Length":198181167,"Class":"mammal"},{"Species":"Giant panda high","avg. heterozygosity":0.0014,"bodysize":100,"Repeats":30.67,"NUMTs":50,"Genome Length":2294400319,"Num ROHs":10,"Total ROH Length":1673041,"Class":"mammal"},{"Species":"Giant panda low","avg. heterozygosity":0.0008,"bodysize":100,"Repeats":30.67,"NUMTs":50,"Genome Length":2294400319,"Num ROHs":4846,"Total ROH Length":369839430,"Class":"mammal"},{"Species":"Golden eagle","avg. heterozygosity":0.0015,"bodysize":5,"Repeats":8.9,"NUMTs":12,"Genome Length":1215614160,"Num ROHs":1962,"Total ROH Length":647833177,"Class":"bird"},{"Species":"Great tit","avg. heterozygosity":0.0053,"bodysize":0.018,"Repeats":7.02,"NUMTs":6,"Genome Length":987035201,"Num ROHs":1946,"Total ROH Length":47617542,"Class":"bird"},{"Species":"Lion","avg. heterozygosity":0.0001,"bodysize":150,"Repeats":32.89,"NUMTs":62,"Genome Length":2288568809,"Num ROHs":829,"Total ROH Length":1857191967,"Class":"mammal"},{"Species":"Platypus","avg. heterozygosity":0.0002,"bodysize":2,"Repeats":51.6,"NUMTs":47,"Genome Length":1813343107,"Num ROHs":857,"Total ROH Length":1496387362,"Class":"mammal"},{"Species":"Snowy owl","avg. heterozygosity":0.0005,"bodysize":2,"Repeats":10.34,"NUMTs":25,"Genome Length":999613802,"Num ROHs":350,"Total ROH Length":502605680,"Class":"bird"},{"Species":"Southern ostritch","avg. heterozygosity":0.0018,"bodysize":110,"Repeats":5.19,"NUMTs":10,"Genome Length":445311711,"Num ROHs":9,"Total ROH Length":1615040,"Class":"bird"},{"Species":"Spoon-billed sandpiper","avg. heterozygosity":0.0015,"bodysize":0.03,"Repeats":null,"NUMTs":null,"Genome Length":366180695,"Num ROHs":5138,"Total ROH Length":65660131,"Class":"bird"},{"Species":"Sunda pangolin","avg. heterozygosity":0.0019,"bodysize":4,"Repeats":27.39,"NUMTs":120,"Genome Length":1972179825,"Num ROHs":3928,"Total ROH Length":556929115,"Class":"mammal"}]; window.SPECIES_COL = 'Species'; window.CLASS_COL = 'Class'; window.DEFAULT_COLOR = 'Class';</script>
+<script>
+  (function(){
+    function isFiniteNumber(x){ return typeof x==='number' && isFinite(x); }
+    function subsetByClass(rows, classKey, selected){
+      if (!classKey || !selected || selected==='__ALL__') return rows;
+      if (selected==='__NA__') {
+        return rows.filter(function(r){ var v = r[classKey]; return v===null || v===undefined || v===''; });
+      } else {
+        return rows.filter(function(r){ return String(r[classKey])===String(selected); });
+      }
+    }
+    function splitByCategory(rowsTrans, rowsOrig, xkey, ykey, ckey){
+      var groups = {};
+      for (var k=0;k<rowsTrans.length;k++){
+        var r = rowsTrans[k], ro = rowsOrig[k];
+        var raw = ro[ckey];
+        var cat = (raw===null || raw===undefined || raw==='') ? '(Missing)' : String(raw);
+        if (!groups[cat]) groups[cat] = {x:[], y:[], text:[], hover:[]};
+        groups[cat].x.push(r[xkey]); groups[cat].y.push(r[ykey]);
+        var sp = ro[window.SPECIES_COL] || '';
+        groups[cat].text.push(sp);
+        groups[cat].hover.push(sp+'<br>'+xkey+': '+(ro[xkey]??'NA')+'<br>'+ykey+': '+(ro[ykey]??'NA')+'<br>'+ckey+': '+cat);
+      }
+      var traces=[];
+      Object.keys(groups).forEach(function(cat){
+        traces.push({
+          x:groups[cat].x, y:groups[cat].y,
+          mode:'markers', type:'scattergl',
+          text:groups[cat].text, hovertext:groups[cat].hover, hoverinfo:'text',
+          name: cat, marker:{size:10}
+        });
+      });
+      return traces;
+    }
+    function buildTraces(rowsTrans, rowsOrig, xkey, ykey, ckey){
+      // Determine if color field is numeric (ignore nulls)
+      var numericColor = true;
+      for (var i=0;i<rowsTrans.length;i++){
+        var v = rowsTrans[i][ckey];
+        if (v===null || v===undefined || v==='') continue;
+        if (typeof v !== 'number' || !isFinite(v)){ numericColor=false; break; }
+      }
+      if (numericColor){
+        var x=[], y=[], color=[], text=[], hover=[];
+        for (var k=0;k<rowsTrans.length;k++){
+          var r = rowsTrans[k], ro = rowsOrig[k];
+          x.push(r[xkey]); y.push(r[ykey]);
+          color.push((typeof r[ckey]==='number' && isFinite(r[ckey])) ? r[ckey] : null);
+          var sp = ro[window.SPECIES_COL] || '';
+          text.push(sp);
+          hover.push(sp+'<br>'+xkey+': '+(ro[xkey]??'NA')+'<br>'+ykey+': '+(ro[ykey]??'NA')+(ckey?'<br>'+ckey+': '+(ro[ckey]??'NA'):''));
+        }
+        return [{
+          x:x, y:y, mode:'markers', type:'scattergl',
+          text:text, hovertext:hover, hoverinfo:'text',
+          marker:{ size:10, color:color, colorscale:'Viridis', showscale:true },
+          name:'data'
+        }];
+      } else {
+        return splitByCategory(rowsTrans, rowsOrig, xkey, ykey, ckey);
+      }
+    }
+    function addHighlight(traces, rowsTrans, rowsOrig, xkey, ykey, highlightSpecies){
+      if (!highlightSpecies || highlightSpecies==='__NONE__') return traces;
+      var x=[], y=[], text=[];
+      for (var k=0;k<rowsTrans.length;k++){
+        var ro = rowsOrig[k];
+        if (String(ro[window.SPECIES_COL])===String(highlightSpecies)){
+          x.push(rowsTrans[k][xkey]); y.push(rowsTrans[k][ykey]); text.push(highlightSpecies);
+        }
+      }
+      if (x.length){
+        traces.push({
+          x:x, y:y, mode:'markers', type:'scattergl', name:'highlight',
+          marker:{ size:14, symbol:'circle-open', line:{width:2} },
+          text:text, hoverinfo:'skip', showlegend:true
+        });
+      }
+      return traces;
+    }
+    function addRegressionIfRequested(layout, traces, rowsTrans, xkey, ykey, showFit){
+      if (!showFit) return {layout:layout, traces:traces, stats:null};
+      var X=[], Y=[];
+      for (var i=0;i<rowsTrans.length;i++){
+        var rx = rowsTrans[i][xkey], ry = rowsTrans[i][ykey];
+        if (typeof rx==='number' && isFinite(rx) && typeof ry==='number' && isFinite(ry)){
+          X.push(rx); Y.push(ry);
+        }
+      }
+      if (X.length<3) return {layout:layout, traces:traces, stats:{n:X.length, r:NaN, p:NaN}};
+      var rVal = ss.sampleCorrelation(X, Y);
+      var lr   = ss.linearRegression(X.map(function(xi, j){ return [xi, Y[j]]; }));
+      var line = ss.linearRegressionLine(lr);
+      var xmin = Math.min.apply(null, X), xmax = Math.max.apply(null, X);
+      var xfit = [xmin, xmax]; var yfit = xfit.map(line);
+      traces.push({ x:xfit, y:yfit, mode:'lines', line:{width:2, dash:'solid'}, name:'fit', hoverinfo:'skip' });
+      var n = X.length, df = n - 2;
+      var t = rVal * Math.sqrt(df / Math.max(1e-12, (1 - rVal*rVal)));
+      var p = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+      return {layout:layout, traces:traces, stats:{n:n, r:rVal, p:p}};
+    }
+    function draw(){
+      var df = window.SWARM_DF || [], origAll = window.SWARM_ORIG || [];
+      var xkey = document.getElementById('xvar').value;
+      var ykey = document.getElementById('yvar').value;
+      var ckey = document.getElementById('cvar').value;
+      var classKey = window.CLASS_COL || null;
+      var classSel = document.getElementById('classFilter').value;
+      var hiSpecies = document.getElementById('speciesHi').value;
+      var doLogX = document.getElementById('logx').checked;
+      var doLogY = document.getElementById('logy').checked;
+      var showFit = document.getElementById('showfit').checked;
+
+      // Subset by Class
+      var rows = subsetByClass(df, classKey, classSel);
+      var rowsOrig = subsetByClass(origAll, classKey, classSel);
+
+      // Transform x/y, drop nulls and non-finite
+      var rowsTrans = [], origAligned = [];
+      for (var i=0;i<rows.length;i++){
+        var r = Object.assign({}, rows[i]);
+        var ro = rowsOrig[i];
+        var xv = r[xkey], yv = r[ykey];
+        if (xv==null || yv==null) continue;
+        if (doLogX && (!(typeof xv==='number' && isFinite(xv)) || xv<=0)) continue;
+        if (doLogY && (!(typeof yv==='number' && isFinite(yv)) || yv<=0)) continue;
+        r[xkey] = doLogX ? Math.log10(xv) : xv;
+        r[ykey] = doLogY ? Math.log10(yv) : yv;
+        rowsTrans.push(r); origAligned.push(ro);
+      }
+
+      // Build traces and overlays
+      var traces = buildTraces(rowsTrans, origAligned, xkey, ykey, ckey);
+      traces = addHighlight(traces, rowsTrans, origAligned, xkey, ykey, hiSpecies);
+
+      var layout = {
+        xaxis:{ title: (doLogX?'log10 ':'') + xkey },
+        yaxis:{ title: (doLogY?'log10 ':'') + ykey },
+        margin:{l:60,r:20,t:10,b:60}, hovermode:'closest'
+      };
+
+      var withFit = addRegressionIfRequested(layout, traces, rowsTrans, xkey, ykey, showFit);
+      Plotly.react('explore-plot', withFit.traces, withFit.layout, {responsive:true, displaylogo:false});
+
+      var sp = document.getElementById('stats-panel');
+      if (withFit.stats && typeof withFit.stats.r === 'number' && isFinite(withFit.stats.r)){
+        var r = withFit.stats.r, p = withFit.stats.p, n = withFit.stats.n;
+        var pTxt = (p<1e-12) ? '< 1e-12' : p.toExponential(2);
+        sp.innerHTML = 'n = '+n+' &middot; r = '+r.toFixed(3)+' &middot; p = '+pTxt + ((doLogX||doLogY) ? ' (on transformed scale)' : '');
+      } else if (showFit) {
+        sp.innerHTML = 'Not enough points for regression.';
+      } else {
+        sp.innerHTML = '';
+      }
+    }
+    // Defaults (explicit selections requested by user)
+    try {
+      // Set dropdowns (if present). Values must match column names exactly.
+      var xv = document.getElementById('xvar');
+      var yv = document.getElementById('yvar');
+      var cv = document.getElementById('cvar');
+      var cf = document.getElementById('classFilter');
+      var sh = document.getElementById('speciesHi');
+      if (xv) xv.value = 'bodysize';
+      if (yv) yv.value = 'avg. heterozygosity';
+      if (cv) cv.value = 'Class';
+      if (cf) cf.value = '__ALL__';
+      if (sh) sh.value = 'Great tit'; // will be ignored if not present
+
+      // Checkboxes
+      var lx = document.getElementById('logx'); if (lx) lx.checked = true;
+      var ly = document.getElementById('logy'); if (ly) ly.checked = false;
+      var sf = document.getElementById('showfit'); if (sf) sf.checked = true;
+    } catch(e) {}
+
+    // Fallback color default
+    if (document.getElementById('cvar') && !document.getElementById('cvar').value) {
+      document.getElementById('cvar').value = window.DEFAULT_COLOR || document.getElementById('cvar').value;
+    }
+
+    // Listeners
+    ['xvar','yvar','cvar','classFilter','speciesHi','logx','logy','showfit'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('change', draw); });
+
+    // Initial draw when libs are ready
+    function ready(){ if (window.Plotly && window.ss && window.jStat) draw(); else setTimeout(ready, 100); }
+    ready();
+  })();
+  </script>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

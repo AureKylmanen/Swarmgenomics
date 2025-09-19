@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data downloads",
+    "section": "",
+    "text": "Study data — The datasets below are from the SwarmGenomics paper and are provided for download and for repeating selected sub‑analyses.\n\nDownload data_info.txt (column definitions)"
+  },
+  {
+    "objectID": "teaching_slides.html",
+    "href": "teaching_slides.html",
+    "title": "Teaching Slides",
+    "section": "",
+    "text": "These materials are free to use to run your own SwarmGenomics course.\nDownload the slide decks below."
+  },
+  {
+    "objectID": "github.html",
+    "href": "github.html",
+    "title": "GitHub Content",
+    "section": "",
+    "text": "Open GitHub Repository\n\n\n\nFiles in AureKylmanen/Swarmgenomics (root)\n\n\n\n\n\n\n\n\n\n\nname\npath\ntype\nsize\nView\nDownload\n\n\n\n\n0. Installations.md\n0. Installations.md\nfile\n10791\nView\nDownload\n\n\n001. Fast-track SwarmGenomics.md\n001. Fast-track SwarmGenomics.md\nfile\n6591\nView\nDownload\n\n\n01. Getting started.md\n01. Getting started.md\nfile\n5642\nView\nDownload\n\n\n02. Mapping and Variant Calling.md\n02. Mapping and Variant Calling.md\nfile\n2795\nView\nDownload\n\n\n03. Large Chromosome Selection and Consensus Building.md\n03. Large Chromosome Selection and Consensus Building.md\nfile\n2379\nView\nDownload\n\n\n04. Genome features.md\n04. Genome features.md\nfile\n2042\nView\nDownload\n\n\n05. Heterozygosity.md\n05. Heterozygosity.md\nfile\n2887\nView\nDownload\n\n\n06. Runs of Homozygosity.md\n06. Runs of Homozygosity.md\nfile\n2821\nView\nDownload\n\n\n07. PSMC.md\n07. PSMC.md\nfile\n3215\nView\nDownload\n\n\n08. Mitochondrial Genome Reconstruction.md\n08. Mitochondrial Genome Reconstruction.md\nfile\n5907\nView\nDownload\n\n\n09. NUMT Identification.md\n09. NUMT Identification.md\nfile\n4646\nView\nDownload\n\n\n10. Repeat Analysis.md\n10. Repeat Analysis.md\nfile\n8075\nView\nDownload\n\n\n11. Unmapped Reads.md\n11. Unmapped Reads.md\nfile\n3668\nView\nDownload\n\n\n12. Genome Visualisation.md\n12. Genome Visualisation.md\nfile\n6526\nView\nDownload\n\n\nFAQs.md\nFAQs.md\nfile\n3890\nView\nDownload\n\n\nREADME.md\nREADME.md\nfile\n4305\nView\nDownload\n\n\nScripts\nScripts\ndir\n0\nView"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SwarmGenomics",
+    "section": "",
+    "text": "A unified pipeline and data portal for individual‑based whole‑genome analyses.\n\n\nBrowse Data Teaching Slides Explore GitHub Repo bioRxiv PDF"
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "SwarmGenomics",
+    "section": "About",
+    "text": "About\nSwarmGenomics is a modular pipeline for reference‑based genome assembly and individual‑based genetic analyses (e.g. heterozygosity, runs of homozygosity, PSMC, repeat analysis, mitogenome assembly, NUMTs). This site serves as the course & data portal.\n\n\n\nSwarmGenomics overview"
+  },
+  {
+    "objectID": "index.html#whats-on-this-site",
+    "href": "index.html#whats-on-this-site",
+    "title": "SwarmGenomics",
+    "section": "What’s on this site",
+    "text": "What’s on this site\n\nExplore — interactive data analysis of the comparative dataset from the paper. Choose X/Y variables, color by Class or a numeric variable, apply log scales, add a regression line (with r and p), and optionally highlight a species. Open: explore.html.\nGitHub — direct link to the SwarmGenomics repository with code, pipeline scripts and documentation. Open: GitHub Repo.\nData — downloads for the datasets used in the paper, including BAMs, reference genomes, and all‑sites VCFs for all species analyses. Open: data.html.\nTeaching — slide decks that are free to use to run your own SwarmGenomics course. Open: teaching_slides.html."
+  },
+  {
+    "objectID": "index.html#further-reading",
+    "href": "index.html#further-reading",
+    "title": "SwarmGenomics",
+    "section": "Further reading",
+    "text": "Further reading\n\nPreprint on bioRxiv: SwarmGenomics preprint."
+  },
+  {
+    "objectID": "explore.html",
+    "href": "explore.html",
+    "title": "Explore",
+    "section": "",
+    "text": "Interactively explore variables from data/all_info.txt (tab‑delimited).\nChoose X/Y axes, color (e.g., Class), subset by Class, optionally highlight a Species (without filtering), toggle log scales, and add a regression line with r and p.\n\n\n\nUsing data from: data/all_info.txt\n\n\nX-axis:\n\navg. heterozygosity\nbodysize\nRepeats\nNUMTs\nGenome Length\nNum ROHs\nTotal ROH Length\n\n\nY-axis:\n\navg. heterozygosity\nbodysize\nRepeats\nNUMTs\nGenome Length\nNum ROHs\nTotal ROH Length\n\n\nColor:\n\nSpecies\navg. heterozygosity\nbodysize\nRepeats\nNUMTs\nGenome Length\nNum ROHs\nTotal ROH Length\nClass\n\n\n\nClass filter:\n\nAll\nmammal\nbird\n\n\nHighlight species:\n\nNone\nAlpine marmot\nAsian elephant\nBlue tit\nBlue whale\nBottlenose dolphin\nChicken\nCommon parakeet\nCommon wombat\nEchidna\nEmperor penguin\nEuropean rabbit\nGiant panda high\nGiant panda low\nGolden eagle\nGreat tit\nLion\nPlatypus\nSnowy owl\nSouthern ostritch\nSpoon-billed sandpiper\nSunda pangolin\n\n\n\n\n\nlog X\n\n\n\nlog Y\n\n\n\nregression line (show r, p)"
+  }
+]

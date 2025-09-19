@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data downloads – SwarmGenomics — Pipeline &amp; Data Portal</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d24c3880db9ce3ca4ea2d5bb002bea1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.34.0/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="styles.scss">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">SwarmGenomics — Pipeline &amp; Data Portal</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./data.html" aria-current="page"> 
+<span class="menu-text">Data</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./github.html"> 
+<span class="menu-text">GitHub Content</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./teaching_slides.html"> 
+<span class="menu-text">Teaching Slides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./explore.html"> 
+<span class="menu-text">Explore</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Data downloads</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data downloads</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<blockquote class="blockquote">
+<strong>Study data</strong> — The datasets below are from the SwarmGenomics paper and are provided for download and for repeating selected sub‑analyses.
+<p>
+<a class="btn btn-sm btn-outline-secondary" href="data/data_info.txt" download="">Download data_info.txt (column definitions)</a>
+</p>
+</blockquote>
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-841ad6cd2c06363ba95d" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-841ad6cd2c06363ba95d">{"x":{"filter":"none","vertical":false,"data":[["Common parakeet","Snow leopard","Giant panda","Malayan pangolin","Kakapo","Panamanian white-faced capuchin","Anna’s Hummingbird","Little brown bat","Emperor penguin","Polar bear","Asian elephant","Common wombat","Great Tit","Chicken","Blue tit","Zebra finch","Golden eagle","Ostritch","Snowy owl","Platypus","Echidna","Lion","Pacific walrus","Blue whale","Cat","Alpine marmot","Common bottlenose dolphin","Orca","European rabbit","West Indian Manatee","Koala","Bald eagle","Spoon-billed sandpiper"],["Melopsittacus undulatus","Panthera uncia","Ailuropoda melanoleuca","Manis javanica","Strigops habroptila","Cebus imitator","Calypte anna","Myotis lucifugus","Aptenodytes forsteri","Ursus maritimus","Elephas maximus indicus","Vombatus ursinus","Parus major","Gallus gallus","Cyanistes caeruleus","Taeniopygia guttata","Aquila chrysaetos","Struthio camelus /australis","Bubo scandiacus","Ornithorhynchus anatinus","Tachyglossus aculeatus","Panthera leo","Odobenus rosmarus divergens","Balaenoptera musculus","Felis catus","Marmota marmota","Tursiops truncatus","Orcinus orca","Oryctolagus cuniculus","Trichechus manatus latirostris","Phascolarctos cinereus","Haliaeetus leucocephalus","Calidris pygmaea"],["<a href=\"https://tu-dortmund.sciebo.de/s/4gzBWLoYg7aZKMr\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/4gzBWLoYg7aZKMr<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/gQa8YNb4NBR9kZX\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/gQa8YNb4NBR9kZX<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/j7QNxoTB7nAc2ee\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/j7QNxoTB7nAc2ee<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/K3LHWBsBwxEaJGj\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/K3LHWBsBwxEaJGj<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/nTEebea8gNpP3t7\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/nTEebea8gNpP3t7<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/Sj34kB3QmFcQMFT\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/Sj34kB3QmFcQMFT<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/T5HooQeJg4TjS2M\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/T5HooQeJg4TjS2M<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/w8F8pQtcca2kiwQ\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/w8F8pQtcca2kiwQ<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/wZf8eErJkN86n5c\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/wZf8eErJkN86n5c<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/Z7x4Z5JAYEPW3ir\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/Z7x4Z5JAYEPW3ir<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/mcmMBgCkwfC2LBQ\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/mcmMBgCkwfC2LBQ<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/772jd3Y7HJX58fz\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/772jd3Y7HJX58fz<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/eA5p3pmJJ5wmQFm\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/eA5p3pmJJ5wmQFm<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/YTJAZBrr7BHdYca\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/YTJAZBrr7BHdYca<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/zQw5CmG39dGJygT\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/zQw5CmG39dGJygT<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/dTSRQXG8ZZN6jAG\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/dTSRQXG8ZZN6jAG<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/ykb4tzYotPGtY3x\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/ykb4tzYotPGtY3x<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/eDA8RN69YpaxmNX\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/eDA8RN69YpaxmNX<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/pafsSqHH9gMaSRe\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/pafsSqHH9gMaSRe<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/6snAgmjLRystswD\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/6snAgmjLRystswD<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/kZD4igHFGae7y77\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/kZD4igHFGae7y77<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/4JPAMSrTmGKM3k9\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/4JPAMSrTmGKM3k9<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/p9sLixW7HFCYKgK\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/p9sLixW7HFCYKgK<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/potSXCsjKdg7yWd\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/potSXCsjKdg7yWd<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/YZKXYjZ45Kwfec9\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/YZKXYjZ45Kwfec9<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/NPM9rdHE4XPxZ7g\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/NPM9rdHE4XPxZ7g<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/BoJtYtgJd9ieYXe\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/BoJtYtgJd9ieYXe<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/8XXqssbayXcbGRf\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/8XXqssbayXcbGRf<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/Nje3JgxXTit3igP\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/Nje3JgxXTit3igP<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/ESp3EA4BF4Dcfc3\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/ESp3EA4BF4Dcfc3<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/eCAEwJ8Pad9bM3Z\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/eCAEwJ8Pad9bM3Z<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/kSM6A2d4pGQqRsT\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/kSM6A2d4pGQqRsT<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/YKQT9Pq3CgLSNaa\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/YKQT9Pq3CgLSNaa<\/a>"],["345MB","734MB","725MB","678Mb","322MB","795MB","314Mb","602MB","361Mb","706MB","1.1GB","1.1GB","303Mb","312Mb","332Mb","341Mb","37Mb","403MB","406Mb","546Mb","637Mb","697Mb","704Mb","717Mb","733Mb","734Mb","737MB","772Mb","826MB","863Mb","978Mb","354Mb","357Mb"],["9022ab755b9e7613b81bd6602b4a7054","2d7cece1014adabb8dd932d115a2cd0e","dbcccc02321a06ae7be10a1f082a7203","8d4b52ff451cb530b391d15f6d0f32e8","7341705fdc925476e0b9b248f412dd6a","f788887b7f2f3ede244f1067df12282d","f3ad4b096a7912b9019e1bce01f72b2c","3d6942b92db149dd80e0afe49a1df984","65e6f8c9ad6f690a113b74753f6a1e70","75397d7bfb28cba143cdde9f1f3290bc","ba94b4caf4692afc8d880e23e900aae1","27321a5773854c6f5aa7d7198db217d8","713cb7a694e8d47f65d329591f261b55","51291297e6b693d8d73207509cbba6aa","f5eaf8b0767c9a7cda1082f93c8ae03a","4792f0068344d2828628f470e4633a5b","7532916b4b719ada1868c6183083b41f","5ba18fe11c90950c91f9ce6a1df8558c","4fdd4f91c69ee3a90b2a0e8eb1473aaa","05c792ad2943f2aceff2fb44a7e41c2f","14b8f13b679c3c54195bc083706fb3c9","33cb54c850de6090ff6364f3823606ac","3e677c5f461ba2a1e57578e53ab84413","83a66c6131dd01a76545496349819491","d271b9b06c5270d2d662534df8a4fcd9","a8b7239ce078cf0e7ed27b02ec598e26","8709c98d333d14069f46213021d89889","5addc1c18636b64bd202e4e3ba2e2651","1dc8882ec7bd641f536740a20c0008b7","387c5daa4a7ca38d87bfaa0cd7c5ad1a","98c04afe90e75003b48909ee05b352de","d5d3ce818dd1beb6749dde972b31a51f","a423d8c287c11f323de35891f102870c"],["<a href=\"https://tu-dortmund.sciebo.de/s/ocKRk9C7Q927mZc\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/ocKRk9C7Q927mZc<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/KCgJownEGo2c7N7\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/KCgJownEGo2c7N7<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/7BDkFf63Dx6w54r\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/7BDkFf63Dx6w54r<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/9qN3CsCy8pBHKY2\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/9qN3CsCy8pBHKY2<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/dcs2NTMmZsmMRRf\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/dcs2NTMmZsmMRRf<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/AFKRFnz3bTbyNgt\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/AFKRFnz3bTbyNgt<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/jNo7cRNwTa4QgNj\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/jNo7cRNwTa4QgNj<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/3ZmNpQsdfXwmBMp\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/3ZmNpQsdfXwmBMp<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/6NgGs6cMfcg58Fn\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/6NgGs6cMfcg58Fn<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/EC5tssMrA7pQLit\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/EC5tssMrA7pQLit<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/zAfAP7PK8r4TCi3\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/zAfAP7PK8r4TCi3<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/WsoJ9KP37awzqrQ\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/WsoJ9KP37awzqrQ<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/gyi48YiDL7F5pfm\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/gyi48YiDL7F5pfm<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/WsfD35pSyy4HsZi\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/WsfD35pSyy4HsZi<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/RTjcab6igjFGXN7\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/RTjcab6igjFGXN7<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/GSyoDLFpWnMocrr\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/GSyoDLFpWnMocrr<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/i3gBHQ3iaQexCFE\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/i3gBHQ3iaQexCFE<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/YWBRgb2Z4Codetq\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/YWBRgb2Z4Codetq<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/cSeEkxnHdaSGJmi\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/cSeEkxnHdaSGJmi<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/eB4MWPdKLP3kQYo\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/eB4MWPdKLP3kQYo<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/fkM9fwXRCcbCPNX\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/fkM9fwXRCcbCPNX<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/pnGGsZLrHodi2SG\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/pnGGsZLrHodi2SG<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/ztiPGrH8xc3HqmR\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/ztiPGrH8xc3HqmR<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/gpFbo7FpQyF28GC\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/gpFbo7FpQyF28GC<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/pFnqDPSjDLnzxwF\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/pFnqDPSjDLnzxwF<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/SZEcd3TxadyLnpL\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/SZEcd3TxadyLnpL<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/PyJo5KrDbpJDCyp\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/PyJo5KrDbpJDCyp<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/WeAWkL3LAQ3zob2\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/WeAWkL3LAQ3zob2<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/Nje3JgxXTit3igP\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/Nje3JgxXTit3igP<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/qFFkow8mXn3bgN7\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/qFFkow8mXn3bgN7<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/ZA59KfnAabnKXwt\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/ZA59KfnAabnKXwt<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/4Yt6cqzPPDzJDHW\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/4Yt6cqzPPDzJDHW<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/EQ4XNHLj2MRgXds\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/EQ4XNHLj2MRgXds<\/a>"],["8.4GB","65GB","40GB","11Gb","12GB","39GB","24GB","29GB","3.1Gb","54GB","8.2GB","47GB","8.2GB","7Gb","13Gb","28GB","13Gb","15GB","15GB","286MB","17GB","3.6GB","20GB","19GB","19Gb","24Gb","12GB","21GB","2.3GB","30GB","22GB","13GB","7.7GB"],["9cc5c7c0b85470066856dceaba563280","b5df66e9d3a3c336e31014eec4572ad2","66a265004d11173fdc2828e9ad5ba5e8","d1df5d02b992403f0de0ea5832152b04","fc6b1ecca558c621bde431e92e2962fd","91440395f1f00c1d51a2f088e8e8641d","330971ef7195c06889c2a2a329ca90e1","ac0025992ea1e3f54cfdb67ee34272ea","8cf3426228e8957d1ca35e59f764eb09","1b2e83bd7c85496e8988c87de10f5db0","0692bf9853139d2d3b002671a327bdbc","ece5ecd393a8f1f0bed3f091d5390d50","16739fa6f76fd537584cc857077c9ed7","9fcc72f0e2f6fc92d35c68ce84d45db7","8311f1442ec03e4d4c513bab3f927437","084933610d22bbb41f396040b4bc6f15","b1e612c668db8774a0b1e3fd6ff0381c","ce811d852aa47ee7fe4c273688ee7e64","12aabea54ce46108e5bb016a057c37b9","98eb7e0b01c20c99109f669a5a503e85","a61bbf20e925c232912eded33f96c194","6bd0005ed43b8459ef5f2992cbf36371","cc857d4e985f73b4981c47fd22c169a0","6e58dd173fe5bfa5e94c6f7e2df9b624","74f55f7bc7a3f2f578470b61641cbef8","dfcd620dc526b02bf14c08be7c2a92c2","c582b10e6b698b490333cc546cb673c4","f3ddc3fce35338bb9f7c744546bd8bb6","9b8e08d38e9fb26301d2771752cfac06","9e482310ca8141cffad9f2907ce5dae6","65351f30c19e8db690c6f8e8599b20b1","dfb8f2dbd8a7d9b04df89b837ec05967","a6372710d1b1b1529e8c780cf4481744"],["<a href=\"https://tu-dortmund.sciebo.de/s/gKd26teGkCKr9wP\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/gKd26teGkCKr9wP<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/ajFkXGfHJLtdkRR\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/ajFkXGfHJLtdkRR<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/2DZpdELXA8q2nbk\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/2DZpdELXA8q2nbk<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/HSie8DwrPATeWeL\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/HSie8DwrPATeWeL<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/w3K6oiYYFEQDCiy\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/w3K6oiYYFEQDCiy<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/94PXow8x5CsFpjz\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/94PXow8x5CsFpjz<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/yA4cTsDF9rNgEBp\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/yA4cTsDF9rNgEBp<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/Nc9R6a7G8Bn2FWz\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/Nc9R6a7G8Bn2FWz<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/aAXMdgkLziTbj5H\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/aAXMdgkLziTbj5H<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/asQE7zLHKGr9N97\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/asQE7zLHKGr9N97<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/RQFWT46kHAsC7WB\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/RQFWT46kHAsC7WB<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/WsoJ9KP37awzqrQ\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/WsoJ9KP37awzqrQ<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/7qkf9NeyRLSFfZd\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/7qkf9NeyRLSFfZd<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/6rL647YyiEKmkaC\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/6rL647YyiEKmkaC<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/Lx52ci4WtTSjXzJ\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/Lx52ci4WtTSjXzJ<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/XzgQRKrr45NJaqR\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/XzgQRKrr45NJaqR<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/XLXagSHJqCb6cdH\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/XLXagSHJqCb6cdH<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/r4YbZNQPJc7fwfj\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/r4YbZNQPJc7fwfj<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/GFEBp7cZkxgsmBT\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/GFEBp7cZkxgsmBT<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/4LQBnXksqwWaDnm\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/4LQBnXksqwWaDnm<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/5iwBWzBWij3ifwe\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/5iwBWzBWij3ifwe<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/pnGGsZLrHodi2SG\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/pnGGsZLrHodi2SG<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/gMcTLFdfTfH9XnZ\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/gMcTLFdfTfH9XnZ<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/35kf6dnPCRNLqym\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/35kf6dnPCRNLqym<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/GtXDj2rXgoPRzEc\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/GtXDj2rXgoPRzEc<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/K8GMA9M8sZccymT\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/K8GMA9M8sZccymT<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/6tNkEnzFAZDewda\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/6tNkEnzFAZDewda<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/pMA5mETL7iJ2XGw\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/pMA5mETL7iJ2XGw<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/26Hz6S5N7zwsC67\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/26Hz6S5N7zwsC67<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/qFFkow8mXn3bgN7\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/qFFkow8mXn3bgN7<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/rrgZcfBzSsdwiQH\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/rrgZcfBzSsdwiQH<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/ZZxdLSXLb6Fe8pZ\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/ZZxdLSXLb6Fe8pZ<\/a>","<a href=\"https://tu-dortmund.sciebo.de/s/F9j6oSgCip5cT7b\" target=\"_blank\" download>https://tu-dortmund.sciebo.de/s/F9j6oSgCip5cT7b<\/a>"],["4.4GB","932MB","17GB","8.8Gb","4.9GB","12GB","6.5GB","12GB","4.2Gb","12GB","5.7Gb","15GB","5GB","5GB","4.6Gb","8.1GB","6.2GB","5.4GB","6GB","238Mb","4.3GB","2.6GB","6.7GB","8.8GB","9.6GB","4.4GB","7.7GB","7.3GB","4.4GB","7.7GB","13GB","4.5GB","4.2GB"],["97ab26e9b92f7ea78d2d1db3cb1d18dd","02b6ee9acd3787906406e52d08930e20","4a714b8cc63c4f507f01381bb2d2f64c","b5a1649a54f239bb1f7fad4073059244","47ba62f9b116010598f51404c3ecc0ee","66d46d93bd18edc0bfea7d6d328e9ada","2aeb7f24c86572d5dcec8bba49a31b31","146913583f2b4c52617c7db34517b9f6","9956bb60b583e19381df9b39e4ea95ac","90d945fd710158f7c53d306c33031f0a","45c0a1cb4a75b6e6d068d70c93869087","791888fd659514ee1dda8286203b8b43","ff717f10ff657c770417dfb0c4a4a131","05f453f3adc1d51dd97c57f059faefb8","d63ecdd31e52ddd63b930cb5e3d89fc5","eec749f33638f310e544f8698b656903","2171731929fe3615ec5e6d363f76a5a7","4d6bda04169ba87e928ee10c0bdc5489","e73aba545293590e7b10a284faaa0cce","f3f8110c62377317c1e44eb311646e22","cb600652292921ee8de5f3329cf37a90","c552e6c92b7c729530ebf3b276403e1f","8cc69baf07160a5e97f5ba324bae5839","b7bd26c49442d9f341118ec5929c23c1","07c02bef40227dc2691dc269ee374d12","c9c2dde85ec24d1a851a76b8b5757de9","9d5a8dec4450f2c73db24cb0e2ba7a5b","1e01c5d50af9d327aa392929e89b37be","041f6aded3606a8d0916910c6fc4c08f","221470daaa8599f42471702ae002c2d8","5341b98ebeb23bddd4e2ffb4a16703d3","c8f00201743d49f0c290f7d8674ccf45","e7d6ac0d0cb48ca47edb66dec4a1b48f"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]],"container":"<table class=\"display nowrap\">\n  <thead>\n    <tr>\n      <th>Species<\/th>\n      <th>Scientific.name<\/th>\n      <th>Ref..Genome.link<\/th>\n      <th>Ref..genome..file.size<\/th>\n      <th>MD5.Hash...5<\/th>\n      <th>BAM.file.link<\/th>\n      <th>BAM.file.size<\/th>\n      <th>MD5.Hash...8<\/th>\n      <th>VCF.file.link<\/th>\n      <th>VCF.file.size<\/th>\n      <th>MD5.Hash...11<\/th>\n      <th>Notes<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"autoWidth":true,"scrollX":true,"columnDefs":[{"name":"Species","targets":0},{"name":"Scientific.name","targets":1},{"name":"Ref..Genome.link","targets":2},{"name":"Ref..genome..file.size","targets":3},{"name":"MD5.Hash...5","targets":4},{"name":"BAM.file.link","targets":5},{"name":"BAM.file.size","targets":6},{"name":"MD5.Hash...8","targets":7},{"name":"VCF.file.link","targets":8},{"name":"VCF.file.size","targets":9},{"name":"MD5.Hash...11","targets":10},{"name":"Notes","targets":11}],"order":[],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
