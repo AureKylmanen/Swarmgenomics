@@ -5,9 +5,11 @@ Advances in sequencing technologies have led to a boom in genomic projects, maki
 
 SwarmGenomics compromises of a step-by-step process of whole-genome assembly, followed by modules which guide the user through different genomic analyses. At present, the modules are heterozygosity analysis, runs of homozygosity detection, PSMC analysis, unmapped reads analysis, repeat analysis, mitochondrial genome assembly, and nuclear mitochondrial DNA (NUMT) analysis. The modules include key population genetic and evolutionary analyses, from which the user can choose from. The pipeline has been created especially for researcher with limited bioinformatics experience and students, and can be used as a teaching material or as self-learning.
 
-For more information about SwarmGenomics, please see our preprint (https://www.biorxiv.org/content/10.1101/2025.08.13.670070v1)
+## Webportal and preprint 
 
+For data download, teaching material and interactive analysis, look at our data portal: https://aurekylmanen.github.io/Swarmgenomics/
 
+For more information about SwarmGenomics, please see our preprint https://www.biorxiv.org/content/10.1101/2025.08.13.670070v1
 
 ## Overview of the Pipeline
 <img width="5113" height="2625" alt="swarmgenomics_pipeline" src="https://github.com/user-attachments/assets/f1b051a2-4cdf-4a0f-87c7-a97968415f1f" />
