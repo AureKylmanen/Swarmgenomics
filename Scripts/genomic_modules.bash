@@ -11,7 +11,7 @@ VCF_DIR="${WORKING_DIR}/${SPECIES}/vcf"
 RESULTS_DIR="${WORKING_DIR}/${SPECIES}/results"
 
 # Tools
-BCFTOOLS="/vol/storage/software/bcftools-1.17/bcftools" # Change this
+BCFTOOLS="/vol/storage/software/bcftools-1.19/bcftools" # Change this
 PSMC="/vol/storage/software/psmc/psmc" # Change this
 PSMC_UTILS="/vol/storage/software/psmc/utils" # Change this
 
@@ -22,13 +22,13 @@ DIPLOID_PSMCFA="${WORKING_DIR}/${SPECIES}/diploid.psmcfa"
 DIPLOID_PSMC="${WORKING_DIR}/${SPECIES}/diploid.psmc"
 IDXSTATS_INPUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_idxstats_output.txt"
 IDXSTATS_CSV="${WORKING_DIR}/${SPECIES}/idxstats_clean.csv"
-HET_RESULTS="${WORKING_DIR}/${SPECIES}/${VCF_DIR}/heterozygosity_results.txt"
+HET_RESULTS="${VCF_DIR}/heterozygosity_results.txt"
 RoH_PLOT="${WORKING_DIR}/${SPECIES}/all_roh_bar_plots.R"
 HET_PLOT="${WORKING_DIR}/${SPECIES}/plot_heterozygosity.R"
 idxstats_PLOT="${WORKING_DIR}/${SPECIES}/idxstats.R"
 
 # Create necessary directories
-mkdir -p "${VCF_HET_DIR}" "${ROH_DIR}" "${RESULTS_DIR}"
+mkdir -p "${VCF_HET_DIR}" "${RESULTS_DIR}"
 
 # Step 0: Generate idxstats and auto-detect read length
 samtools idxstats "${BAM_FILE}" > "${IDXSTATS_INPUT}"
