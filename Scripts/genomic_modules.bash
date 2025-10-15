@@ -28,7 +28,7 @@ HET_PLOT="${WORKING_DIR}/${SPECIES}/plot_heterozygosity.R"
 idxstats_PLOT="${WORKING_DIR}/${SPECIES}/idxstats.R"
 
 # Create necessary directories
-mkdir -p "${VCF_HET_DIR}" "${RESULTS_DIR}"
+mkdir -p "${RESULTS_DIR}"
 
 # Step 0: Generate idxstats and auto-detect read length
 samtools idxstats "${BAM_FILE}" > "${IDXSTATS_INPUT}"
