@@ -41,7 +41,9 @@ echo "Detected read length: $READ_LENGTH"
 
 awk 'BEGIN {OFS=","; print "chrom,length,mapped,unmapped"} {print $1,$2,$3,$4}' "$IDXSTATS_INPUT" > "$IDXSTATS_CSV"
 
-cp "${IDXSTATS_CSV}" "${IDXSTATS_INPUT}" "${idxstats_PLOT}" "${RESULTS_DIR}/"
+# Step 1: Plot results
+Rscript "${idxstats_PLOT}" "$IDXSTATS_CSV" $READ_LENGTH
+cp "${IDXSTATS_CSV}" "${IDXSTATS_INPUT}" *.png "${RESULTS_DIR}/"
 
 # Step 2: Generate RoH
 cd "${VCF_DIR}"
@@ -91,11 +93,6 @@ else
     echo "Heterozygosity results file not found!"
     exit 1
 fi
-
-
-# Step 1: Run idxstats R plotting
-Rscript "${idxstats_PLOT}" "${RESULTS_DIR}/idxstats_clean.csv" $READ_LENGTH
-
 
 # Step 6: Prepare input for PSMC
 cd "${WORKING_DIR}/${SPECIES}"
