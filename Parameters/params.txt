@@ -1,0 +1,217 @@
+########################################
+# SwarmGenomics parameter file
+# Edit values as needed before running
+########################################
+
+# ============================
+# COMPUTATIONAL RESOURCES
+# ============================
+
+# Important to change accroding to your available resources
+THREADS=10
+
+# ============================
+# WORKING DIRECTORIES
+# ============================
+# Important to change!
+WORKING_DIR="/vol/storage/swarmgenomics"
+TOOL_DIR="/vol/storage/software"
+SCRIPTS="/vol/storage/swarmgenomics/scripts"
+
+# ============================
+# DATABASE PATHS
+# ============================
+
+KRAKEN_DB="/vol/storage/kraken_database/"
+
+MITO_DB_DIR="${WORKING_DIR}/mt_database"
+MT_FASTA="${MITO_DB_DIR}/genome.fna"
+MITO_DB="${MITO_DB_DIR}/mito_db"
+
+PT_DB="/vol/storage/pt_database/plastid_db"
+PT_FASTA="/vol/storage/pt_database/plant_cp_genomes.fna"
+
+# URL to download mitochondrial database
+MT_DB_URL="https://tu-dortmund.sciebo.de/s/N9Ljnt2cbFfnbMD/download/genome.fna.gz"
+
+# ============================
+# TOOLS PATHS
+# ============================
+PSMC="${TOOL_DIR}/psmc/psmc"
+PSMC_UTILS="${TOOL_DIR}/psmc/utils"
+PSMC_PLOT_SCRIPT="${PSMC_UTILS}/psmc_plot.pl"
+
+REPEATMODELER2="${TOOL_DIR}/RepeatModeler2"
+REPEATMASKER="${TOOL_DIR}/RepeatMasker"
+BCFTOOLS="/${TOOL_DIR}/bcftools-1.19" 
+SRATOOLS="${TOOL_DIR}/sratoolkit.3.1.1-centos_linux64/bin"
+
+# ============================
+# SPECIES-SPECIFIC DIRECTORIES
+# ============================
+# You don't need to change anything here
+
+FASTQ_DIR="${WORKING_DIR}/${SPECIES}/fastq"
+FASTQC_DIR="${WORKING_DIR}/${SPECIES}/fastqc"
+VCF_DIR="${WORKING_DIR}/${SPECIES}/vcf"
+ROH_DIR="${WORKING_DIR}/${SPECIES}/roh"
+RESULTS_DIR="${WORKING_DIR}/${SPECIES}/results"
+MT_OUT_DIR="${WORKING_DIR}/${SPECIES}/mt"
+PT_OUT_DIR="${WORKING_DIR}/${SPECIES}/pt"
+
+# ============================
+# FILE PATHS FOR OUTPUTS & INTERMEDIATES
+# ============================
+# You don't need to change anything here
+
+TARGET_LEN="${WORKING_DIR}/${SPECIES}/target_len.lst"
+BAM_FILE="${WORKING_DIR}/${SPECIES}/bwa.sorted.bam"
+IDXSTATS_INPUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_idxstats_output.txt"
+IDXSTATS_CSV="${WORKING_DIR}/${SPECIES}/idxstats_clean.csv"
+HET_RESULTS="${WORKING_DIR}/${SPECIES}/heterozygosity_results.txt"
+
+
+RoH_PLOT="${SCRIPTS}/all_roh_bar_plots.R"
+
+MITO_TREE_PLOT="${SCRIPTS}/phylotree.py"
+
+UNMAPPED_BAM="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.bam"
+UNMAPPED_FASTQ="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.fastq"
+KRAKEN_OUTPUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.kraken"
+KRAKEN_REPORT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.kreport"
+CLASSIFIED_OUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_classified"
+UNCLASSIFIED_OUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unclassified"
+KREPORT_TO_KRONA_SCRIPT="${SCRIPTS}/kreport2krona.py"
+KRONA_HTML="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.krona.html"
+
+# ======================================
+# PREPROCESSING: TRIMMOMATIC
+# ======================================
+
+ADAPTERS="${TOOL_DIR}/trimmomatics/adapters.fa"
+TRIM_SLIDINGWINDOW="4:20"
+TRIM_MINLEN=25
+TRIM_ILLUMINACLIP="2:30:10:2:keepBothReads"
+
+
+# ======================================
+# PREPROCESSING: VARIANT CALLING (BCFTOOLS)
+# ======================================
+
+MPILEUP_C=50
+BCFTOOLS_CALL_MODE="-c"
+
+
+# ======================================
+# PREPROCESSING: SCAFFOLD FILTERING FOR PREPROCESSING
+# ======================================
+
+# Minimum scaffold length (bp) to keep
+MIN_SCAFFOLD_LENGTH=5000000
+
+
+# ======================================
+# PREPROCESSING: VCF FILTERING
+# ======================================
+
+VCF_MIN_DP=5
+VCF_MIN_ALLELES=2
+VCF_MAX_ALLELES=2
+
+
+# ============================
+# IDXSTATS PLOTTING
+# ============================
+
+# idxstats.R location
+idxstats_PLOT="${SCRIPTS}/idxstats.R"
+
+# Number of scaffolds to plot
+IDXSTATS_TOP_SCAFFOLDS=20
+
+# Color palette (RColorBrewer palette name)
+IDXSTATS_COLOR_PALETTE="Set2"
+
+# Optional: manually override colors (comma-separated hex or names)
+# Leave empty to use palette
+IDXSTATS_CUSTOM_COLORS=""
+
+
+# ============================
+# HETEROZYGOSITY
+# ============================
+# Number of scaffolds to plot
+TOP_SCAFFOLDS=20
+HET_PLOT_SCRIPT="${SCRIPTS}/plot_heterozygosity.R"
+
+# ============================
+# RUNS OF HOMOZYGOSITY
+# ============================
+ROH_MIN_GQ=30
+ROH_DEFAULT_AF=0.4
+
+# ============================
+# PSMC
+# ============================
+DIPLOID_FASTQ="${WORKING_DIR}/${SPECIES}/diploid.fq.gz"
+DIPLOID_PSMCFA="${WORKING_DIR}/${SPECIES}/diploid.psmcfa"
+DIPLOID_PSMC="${WORKING_DIR}/${SPECIES}/diploid.psmc"
+
+PSMC_N_ITER=25
+PSMC_T=15
+PSMC_R=5
+PSMC_PATTERN="2+2+25*2+4+6"
+
+MUTATION_RATE=1.25e-8
+GENERATION_TIME=25
+
+# ============================
+# MITOGENOME ASSEMBLY
+# ============================
+GETORGANELLE_TYPE="animal_mt"  # embplant_mt, fungus_mt, etc.
+GETORGANELLE_READS=20
+
+MIN_MITO_SCAFFOLD_WARNING=200000
+MIN_PLASTID_SCAFFOLD_WARNING=120000
+
+# ============================
+# PHYLOGENETIC ANALYSIS
+# ============================
+N_BLAST_HITS=10
+MAFFT_OPTS="--auto"
+FASTTREE_OPTS="-nt"
+PHYLOTREE_SCRIPT="${SCRIPTS}/phylotree.py"
+
+# ============================
+# BLAST PARAMETERS
+# ============================
+BLAST_MAX_TARGET_SEQS=50
+BLAST_WORD_SIZE=20
+
+# ============================
+# NUMT DETECTION
+# ============================
+NUMT_BLAST_OUT="${WORKING_DIR}/${SPECIES}/${SPECIES}.blast.out"
+NUMT_BLAST_CLEAN="${WORKING_DIR}/${SPECIES}/${SPECIES}.blast.clean.out"
+NUMT_SEP_FA="${WORKING_DIR}/${SPECIES}/${SPECIES}.sep.fa"
+
+# ============================
+# REPEAT ANNOTATION
+# ============================
+RM_THREADS=$THREADS
+RM_GENOME_SAMPLE=243000000
+RM2_DIR="${WORKING_DIR}/RepeatModeler2"
+RM_DIR="${WORKING_DIR}/RepeatMasker"
+
+
+# ============================
+# CIRCOS PLOT
+# ============================
+
+# Circos include paths
+CIRCOS_COLORS_CONF="${TOOL_DIR}/circos-0.69-9/etc/colors.conf"
+CIRCOS_BREWER_CONF="${TOOL_DIR}/circos-0.69-9/etc/brewer.all.conf"
+CIRCOS_FONTS_CONF="${TOOL_DIR}/circos-0.69-9/etc/fonts.conf"
+CIRCOS_IMAGE_CONF="${TOOL_DIR}/circos-0.69-9/etc/image.conf"
+CIRCOS_HOUSEKEEPING_CONF="${TOOL_DIR}/circos-0.69-9/etc/housekeeping.conf"
+
