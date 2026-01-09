@@ -41,6 +41,9 @@ roh$Size_category <- cut(
   right = FALSE
 )
 
+roh <- roh %>% filter(!is.na(Size_category))
+
+
 summary <- roh %>%
   group_by(Size_category) %>%
   summarise(
