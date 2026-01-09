@@ -95,13 +95,24 @@ Rscript "$idxstats_PLOT" \
 # COPY GENERATED FILES TO RESULTS
 # ============================
 echo "Copying generated PNG plots to results directory..."
+
+# Check for PNGs and move/rename them by species
 if compgen -G "*.png" > /dev/null; then
-    cp -v -- *.png "$RESULTS_DIR/"
+    for f in idxstats_scaffold_lengths.png idxstats_unmapped_reads_per_mbp.png idxstats_coverage.png; do
+        if [[ -f "$f" ]]; then
+            new_name="${SPECIES}_$f"
+            mv -v "$f" "$RESULTS_DIR/$new_name"
+        fi
+    done
 else
     echo "⚠️ No PNG files found in current directory after plotting."
 fi
 
+# Copy CSV, input, and R script to results directory
 echo "Copying CSV, input, and R script to results directory..."
 cp -v "$IDXSTATS_CSV" "$IDXSTATS_INPUT" "$idxstats_PLOT" "$RESULTS_DIR/"
+
+echo "✅ idxstats analysis completed. All results saved in $RESULTS_DIR."
+
 
 echo "✅ idxstats analysis completed. Results saved in $RESULTS_DIR."
