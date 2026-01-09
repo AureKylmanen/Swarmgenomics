@@ -80,7 +80,7 @@ done
 # Plot heterozygosity results
 if [[ -f "$HET_RESULTS" ]]; then
     echo "Plotting heterozygosity results..."
-    Rscript "$HET_PLOT_SCRIPT" "$HET_RESULTS" "$TOP_SCAFFOLDS" "${RESULTS_DIR}/heterozygosity_plot.png"
+    Rscript "$HET_PLOT_SCRIPT" "$HET_RESULTS" "$TOP_SCAFFOLDS" "$HET_PLOT_COLOR" "${RESULTS_DIR}/heterozygosity_plot.png"
 else
     echo "❌ ERROR: Heterozygosity results file not found!"
     exit 1
