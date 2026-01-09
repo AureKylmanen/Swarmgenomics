@@ -1,122 +1,270 @@
-# Version 1.0 
-# 21.11.2024
+#!/bin/bash
+# Script Name: preprocessing.bash
+# Description: Read preprocessing, alignment, variant calling, VCF preparation and diploid.fq creation
+# Author: Aure Kylmänen
+# ====================================
+set -euo pipefail
 
-# Input variables
-# 1 = species name (e.g., golden_eagle)
-# 2 = path to the reference genome file (e.g., /vol/storage/swarmgenomics/reference.fna.gz)
-# 3 = SRA file identifier (e.g., ERR3316068)
+# ============================
+# USAGE
+# ============================
+# ./preprocessing.bash <species> <reference.fna.gz> <SRA_ID> <params.txt>
 
-# To run use nohup and & (e.g., nohup ./preprocessing.bash "golden_eagle" "/vol/storage/swarmgenomics/reference.fna.gz" "ERR3316068" &)
+if [[ $# -ne 4 ]]; then
+    echo "Usage: $0 <species> <reference.fna.gz> <SRA_ID> <params.txt>"
+    exit 1
+fi
 
-# Adjust number of threads according to your machine
-# To check how many threads use command "nproc"
-THREADS=26  # Change this to match available resources
+SPECIES="$1"
+GENOME_FILE="$2"
+SRA_FILE="$3"
+PARAMS_FILE="$4"
 
-SPECIES=$1
-GENOME_FILE=$2
-SRA_FILE=$3
+# ============================
+# LOAD PARAMETERS
+# ============================
 
-# Directories
-WORKING_DIR="/vol/storage/etc" # Change this
-FASTQ_DIR="${WORKING_DIR}/${SPECIES}/fastq"
-FASTQC_DIR="${WORKING_DIR}/${SPECIES}/fastqc"
-VCF_DIR="${WORKING_DIR}/${SPECIES}/vcf"
-TARGET_LEN="${WORKING_DIR}/${SPECIES}/target_len.lst"
-ADAPTERS="/vol/storage/software/trimmomatics/adapters.fa" # Change this if installations in different location
-BCFTOOLS="/vol/storage/software/bcftools-1.19" # Change this if installations in different location
-SRATOOLS="/vol/storage/software/sratoolkit.3.1.1-centos_linux64/bin" # Change this if installations in different location
-SRA_PATH="${WORKING_DIR}/${SPECIES}/${SRA_FILE}/${SRA_FILE}.sra"
+if [[ ! -f "$PARAMS_FILE" ]]; then
+    echo "ERROR: Parameter file not found: $PARAMS_FILE"
+    exit 1
+fi
 
-# Step 1: Dump SRA files into FASTQ
-$SRATOOLS/fastq-dump --outdir $FASTQ_DIR --split-files $SRA_PATH
+source "$PARAMS_FILE"
 
-# Step 2: Run FastQC on raw FASTQ files
-mkdir -p $FASTQC_DIR
-fastqc -t $THREADS -o $FASTQC_DIR -f fastq ${FASTQ_DIR}/${SRA_FILE}_1.fastq ${FASTQ_DIR}/${SRA_FILE}_2.fastq
+# ============================
+# REQUIRED PARAMETERS CHECK
+# ============================
 
-# Step 3: Trimming the reads using Trimmomatic
-trimmomatic PE -threads $THREADS ${FASTQ_DIR}/${SRA_FILE}_1.fastq ${FASTQ_DIR}/${SRA_FILE}_2.fastq \
-    ${FASTQ_DIR}/${SRA_FILE}_1_paired.fastq.gz ${FASTQ_DIR}/${SRA_FILE}_1_unpaired.fastq.gz \
-    ${FASTQ_DIR}/${SRA_FILE}_2_paired.fastq.gz ${FASTQ_DIR}/${SRA_FILE}_2_unpaired.fastq.gz \
-    SLIDINGWINDOW:4:20 MINLEN:25 ILLUMINACLIP:${ADAPTERS}:2:30:10:2:keepBothReads
+: "${WORKING_DIR:?Missing WORKING_DIR}"
+: "${THREADS:?Missing THREADS}"
+: "${SRATOOLS:?Missing SRATOOLS}"
+: "${BCFTOOLS:?Missing BCFTOOLS}"
+: "${ADAPTERS:?Missing ADAPTERS}"
+: "${TRIM_SLIDINGWINDOW:?Missing TRIM_SLIDINGWINDOW}"
+: "${TRIM_MINLEN:?Missing TRIM_MINLEN}"
+: "${MPILEUP_C:?Missing MPILEUP_C}"
+: "${MIN_SCAFFOLD_LENGTH:?Missing MIN_SCAFFOLD_LENGTH}"
+: "${VCF_MIN_DP:?Missing VCF_MIN_DP}"
 
-# Step 4: Run FastQC on the trimmed FASTQ files
-fastqc -t $THREADS -o $FASTQC_DIR -f fastq \
-    ${FASTQ_DIR}/${SRA_FILE}_1_paired.fastq.gz \
-    ${FASTQ_DIR}/${SRA_FILE}_1_unpaired.fastq.gz \
-    ${FASTQ_DIR}/${SRA_FILE}_2_paired.fastq.gz \
-    ${FASTQ_DIR}/${SRA_FILE}_2_unpaired.fastq.gz
+# ============================
+# DIRECTORIES
+# ============================
 
-# Step 5: Index the reference genome using BWA
-bwa index $GENOME_FILE
+SPECIES_DIR="${WORKING_DIR}/${SPECIES}"
+FASTQ_DIR="${SPECIES_DIR}/fastq"
+FASTQC_DIR="${SPECIES_DIR}/fastqc"
+VCF_DIR="${SPECIES_DIR}/vcf"
 
-# Step 6: Align paired-end reads to the reference genome
-bwa mem -t $THREADS $GENOME_FILE \
-    ${FASTQ_DIR}/${SRA_FILE}_1_paired.fastq.gz \
-    ${FASTQ_DIR}/${SRA_FILE}_2_paired.fastq.gz \
-    > ${WORKING_DIR}/${SPECIES}/${SRA_FILE}.sam
+mkdir -p "$FASTQ_DIR" "$FASTQC_DIR" "$VCF_DIR"
 
-# Step 7: Sort the aligned reads and save as BAM
-samtools sort -@ $THREADS ${WORKING_DIR}/${SPECIES}/${SRA_FILE}.sam -o ${WORKING_DIR}/${SPECIES}/bwa.sorted.bam
+# ============================
+# INPUT VALIDATION
+# ============================
 
-# Step 8: Index the sorted BAM file
-samtools index ${WORKING_DIR}/${SPECIES}/bwa.sorted.bam
+if [[ ! -f "$GENOME_FILE" ]]; then
+    echo "ERROR: Reference genome not found: $GENOME_FILE"
+    exit 1
+fi
 
-# Step 9: Unzip and index the reference genome
-gunzip -c $GENOME_FILE > ${GENOME_FILE%.gz}
-samtools faidx ${GENOME_FILE%.gz}
+# ============================
+# STEP 1: SRA → FASTQ
+# ============================
 
-# Step 10: Generate VCF using BCFtools
-$BCFTOOLS/bcftools mpileup -C50 -f ${GENOME_FILE%.gz} ${WORKING_DIR}/${SPECIES}/bwa.sorted.bam | \
-$BCFTOOLS/bcftools call -c -o ${WORKING_DIR}/${SPECIES}/output.vcf
+echo "Downloading and converting SRA to FASTQ..."
 
-# Step 11: Create a bed file with repeats
-perl -lne 'if(/^(>.*)/){ $head=$1 } else { $fa{$head} .= $_ } END{ foreach $s (sort(keys(%fa))){ print "$s\n$fa{$s}\n" }}' \
-    ${GENOME_FILE%.gz} | \
-perl -lne 'if(/^>(\S+)/){ $n=$1} else { while(/([a-z]+)/g){ printf("%s\t%d\t%d\n",$n,pos($_)-length($1),pos($_)) } }' \
-    > ${WORKING_DIR}/${SPECIES}/repeats.bed
+SRA_PATH="${SPECIES_DIR}/${SRA_FILE}/${SRA_FILE}.sra"
 
-# Step 12: Remove repeats from VCF
-bedtools subtract -header -a ${WORKING_DIR}/${SPECIES}/output.vcf -b ${WORKING_DIR}/${SPECIES}/repeats.bed > ${WORKING_DIR}/${SPECIES}/output_no_repeats.vcf
-mv ${WORKING_DIR}/${SPECIES}/output_no_repeats.vcf ${WORKING_DIR}/${SPECIES}/output.vcf
+"${SRATOOLS}/fastq-dump" \
+    --split-files \
+    --outdir "$FASTQ_DIR" \
+    "$SRA_PATH"
 
-# Step 13: Filter large chromosomes and prepare VCF files
-awk '$0 ~ ">" {if (NR > 1) {print c;} c=0;printf substr($0,2) "\t"; } $0 !~ ">" {c+=length($0);} END { print c; }' ${GENOME_FILE%.gz} | \
-awk '$(NF) >= 5000000  {print $1}' > $TARGET_LEN
+# ============================
+# STEP 2: FASTQC (RAW)
+# ============================
 
-$BCFTOOLS/bcftools view ${WORKING_DIR}/${SPECIES}/output.vcf -Oz -o ${WORKING_DIR}/${SPECIES}/output.vcf.gz
-tabix -p vcf ${WORKING_DIR}/${SPECIES}/output.vcf.gz
+echo "Running FastQC on raw reads..."
 
-# Step 14: Prepare chromosome-specific VCF files
-mkdir -p $VCF_DIR
-cd $VCF_DIR
+fastqc -t "$THREADS" -o "$FASTQC_DIR" \
+    "${FASTQ_DIR}/${SRA_FILE}_1.fastq" \
+    "${FASTQ_DIR}/${SRA_FILE}_2.fastq"
+
+# ============================
+# STEP 3: TRIMMOMATIC
+# ============================
+
+echo "Trimming reads with Trimmomatic..."
+
+trimmomatic PE -threads "$THREADS" \
+    "${FASTQ_DIR}/${SRA_FILE}_1.fastq" \
+    "${FASTQ_DIR}/${SRA_FILE}_2.fastq" \
+    "${FASTQ_DIR}/${SRA_FILE}_1_paired.fastq.gz" \
+    "${FASTQ_DIR}/${SRA_FILE}_1_unpaired.fastq.gz" \
+    "${FASTQ_DIR}/${SRA_FILE}_2_paired.fastq.gz" \
+    "${FASTQ_DIR}/${SRA_FILE}_2_unpaired.fastq.gz" \
+    SLIDINGWINDOW:${TRIM_SLIDINGWINDOW} \
+    MINLEN:${TRIM_MINLEN} \
+    ILLUMINACLIP:${ADAPTERS}:2:30:10:2:keepBothReads
+
+# ============================
+# STEP 4: FASTQC (TRIMMED)
+# ============================
+
+fastqc -t "$THREADS" -o "$FASTQC_DIR" \
+    "${FASTQ_DIR}/${SRA_FILE}_1_paired.fastq.gz" \
+    "${FASTQ_DIR}/${SRA_FILE}_2_paired.fastq.gz"
+
+# ============================
+# STEP 5: ALIGNMENT (BWA)
+# ============================
+
+echo "Indexing reference genome..."
+bwa index "$GENOME_FILE"
+
+echo "Aligning reads..."
+bwa mem -t "$THREADS" "$GENOME_FILE" \
+    "${FASTQ_DIR}/${SRA_FILE}_1_paired.fastq.gz" \
+    "${FASTQ_DIR}/${SRA_FILE}_2_paired.fastq.gz" \
+    > "${SPECIES_DIR}/${SRA_FILE}.sam"
+
+# ============================
+# STEP 6: BAM PROCESSING
+# ============================
+
+samtools sort -@ "$THREADS" \
+    "${SPECIES_DIR}/${SRA_FILE}.sam" \
+    -o "${SPECIES_DIR}/bwa.sorted.bam"
+
+samtools index "${SPECIES_DIR}/bwa.sorted.bam"
+
+# ============================
+# STEP 7: PREPARE REFERENCE
+# ============================
+
+REF_UNZIPPED="${GENOME_FILE%.gz}"
+
+if [[ ! -f "$REF_UNZIPPED" ]]; then
+    gunzip -c "$GENOME_FILE" > "$REF_UNZIPPED"
+fi
+
+samtools faidx "$REF_UNZIPPED"
+
+# ============================
+# STEP 8: VARIANT CALLING
+# ============================
+
+echo "Calling variants..."
+
+"${BCFTOOLS}/bcftools" mpileup \
+    -C "$MPILEUP_C" \
+    -f "$REF_UNZIPPED" \
+    "${SPECIES_DIR}/bwa.sorted.bam" | \
+"${BCFTOOLS}/bcftools" call \
+    -c \
+    -o "${SPECIES_DIR}/output.vcf"
+
+# ============================
+# STEP 9: REPEAT MASKING
+# ============================
+
+echo "Generating repeat BED file..."
+
+perl -lne '
+if(/^(>.*)/){ $head=$1 }
+else { $fa{$head}.=$_ }
+END{
+for $s (keys %fa){
+print "$s\n$fa{$s}"
+}}' "$REF_UNZIPPED" | \
+perl -lne '
+if(/^>(\S+)/){ $n=$1 }
+else{
+while(/([a-z]+)/g){
+printf("%s\t%d\t%d\n",$n,pos($_)-length($1),pos($_))
+}}' > "${SPECIES_DIR}/repeats.bed"
+
+bedtools subtract -header \
+    -a "${SPECIES_DIR}/output.vcf" \
+    -b "${SPECIES_DIR}/repeats.bed" \
+    > "${SPECIES_DIR}/output_norepeats.vcf"
+
+mv "${SPECIES_DIR}/output_norepeats.vcf" "${SPECIES_DIR}/output.vcf"
+
+# ============================
+# STEP 10: FILTER LARGE SCAFFOLDS
+# ============================
+
+TARGET_LEN="${SPECIES_DIR}/target_len.lst"
+
+awk '$0 ~ ">" {
+    if (NR > 1) print c;
+    c=0;
+    printf substr($0,2) "\t";
+}
+$0 !~ ">" { c+=length($0) }
+END { print c }' "$REF_UNZIPPED" | \
+awk "\$2 >= ${MIN_SCAFFOLD_LENGTH} {print \$1}" \
+> "$TARGET_LEN"
+
+# ============================
+# STEP 11: SPLIT VCF BY SCAFFOLD
+# ============================
+
+"${BCFTOOLS}/bcftools" view \
+    "${SPECIES_DIR}/output.vcf" -Oz \
+    -o "${SPECIES_DIR}/output.vcf.gz"
+
+tabix -p vcf "${SPECIES_DIR}/output.vcf.gz"
+
+cd "$VCF_DIR"
+
 while read chr; do
-    tabix -h ${WORKING_DIR}/${SPECIES}/output.vcf.gz $chr > ${chr}.vcf
-done < $TARGET_LEN
+    tabix -h "${SPECIES_DIR}/output.vcf.gz" "$chr" > "${chr}.vcf"
+done < "$TARGET_LEN"
 
-# Step 15: Apply VCF filtering
+# ============================
+# STEP 12: VCF FILTERING
+# ============================
+
 for file in *.vcf; do
-    vcftools --vcf $file --minDP 5 --min-alleles 2 --max-alleles 2 --recode --recode-INFO-all --out ${file%.vcf}_filtered
+    vcftools \
+        --vcf "$file" \
+        --minDP "$VCF_MIN_DP" \
+        --min-alleles "$VCF_MIN_ALLELES" \
+        --max-alleles "$VCF_MAX_ALLELES" \
+        --recode --recode-INFO-all \
+        --out "${file%.vcf}_filtered"
 done
 
-# Step 16: Compress and index filtered VCFs
 for file in *_filtered.recode.vcf; do
-    bgzip -@ $THREADS $file
-    $BCFTOOLS/bcftools index ${file}.gz
+    bgzip -@ "$THREADS" "$file"
+    "${BCFTOOLS}/bcftools" index "${file}.gz"
 done
 
-# Step 17: Generate consensus fastq files for large chromosomes
-cd $VCF_DIR
+# ============================
+# STEP 13: GENERATE CONSENSUS FASTQ FILES PER SCAFFOLD
+# ============================
+
+cd "$VCF_DIR"
+echo "Generating consensus FASTQ for each scaffold..."
+
 while read chr; do
     echo "Processing $chr..."
-    samtools faidx ${GENOME_FILE%.gz} "$chr" > "${chr}.fa"
+    samtools faidx "$REF_UNZIPPED" "$chr" > "${chr}.fa"
+
     $BCFTOOLS/bcftools consensus \
         -f "${chr}.fa" \
         "${chr}_filtered.recode.vcf.gz" | \
-    seqtk seq -F 'I' - > "${chr}.fq" || echo "FAILED: $chr"
+    seqtk seq -F 'I' - > "${chr}.fq" || echo "⚠️ FAILED: $chr"
 done < "$TARGET_LEN"
 
-# Step 18: Concatenate and gzip final FASTQ
-cat *.fq > diploid.fq
-gzip diploid.fq
-mv diploid.fq.gz ${WORKING_DIR}/${SPECIES}/
+# ============================
+# STEP 14: CONCATENATE AND COMPRESS DIPLOID FASTQ
+# ============================
+
+echo "Concatenating all scaffold FASTQs into ${DIPLOID_FASTQ}..."
+cat *.fq | gzip -c > "$DIPLOID_FASTQ"
+
+echo "✅ Diploid FASTQ creation completed successfully: $DIPLOID_FASTQ"
+
+echo "Preprocessing completed successfully."
