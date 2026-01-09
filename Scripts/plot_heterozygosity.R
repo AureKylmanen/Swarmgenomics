@@ -1,12 +1,8 @@
-# Load libraries
-library(ggplot2)
-library(dplyr)
-
-# Read command-line arguments
 args <- commandArgs(trailingOnly = TRUE)
-het_file <- args[1]            # e.g., heterozygosity_results.txt
+het_file <- args[1]            # heterozygosity_results.txt
 top_n <- as.numeric(args[2])   # e.g., 20
-out_file <- args[3]            # e.g., heterozygosity_plot.png
+bar_color <- args[3]            # Color passed from params
+out_file <- args[4]            # heterozygosity_plot.png
 
 # Load the heterozygosity data
 data <- read.delim(het_file, sep="\t")
@@ -21,7 +17,7 @@ top_scaffolds <- data %>%
 
 # Create bar plot
 ggplot(top_scaffolds, aes(x = Chromosome, y = Heterozygosity)) +
-  geom_bar(stat = "identity", fill = "skyblue", width = 0.7) +
+  geom_bar(stat = "identity", fill = bar_color, width = 0.7) +   # Use variable here
   labs(
     x = "Chromosome/Scaffold",
     y = "Heterozygosity",
