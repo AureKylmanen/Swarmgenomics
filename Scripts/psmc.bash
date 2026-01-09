@@ -2,7 +2,6 @@
 # Script Name: psmc.bash
 # Description: Run PSMC analysis for a species
 # Author: Aure Kylmänen
-# Created: 08.01.2026
 # ====================================
 set -euo pipefail
 
