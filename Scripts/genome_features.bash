@@ -113,6 +113,3 @@ echo "Copying CSV, input, and R script to results directory..."
 cp -v "$IDXSTATS_CSV" "$IDXSTATS_INPUT" "$idxstats_PLOT" "$RESULTS_DIR/"
 
 echo "✅ idxstats analysis completed. All results saved in $RESULTS_DIR."
-
-
-echo "✅ idxstats analysis completed. Results saved in $RESULTS_DIR."
