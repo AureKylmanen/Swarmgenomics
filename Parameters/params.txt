@@ -22,14 +22,13 @@ SCRIPTS="/vol/storage/swarmgenomics/scripts"
 # DATABASE PATHS
 # ============================
 
+# Unmapped reads 
 KRAKEN_DB="/vol/storage/kraken_database/"
 
+# Mitogenome assembly database
 MITO_DB_DIR="${WORKING_DIR}/mt_database"
 MT_FASTA="${MITO_DB_DIR}/genome.fna"
 MITO_DB="${MITO_DB_DIR}/mito_db"
-
-PT_DB="/vol/storage/pt_database/plastid_db"
-PT_FASTA="/vol/storage/pt_database/plant_cp_genomes.fna"
 
 # URL to download mitochondrial database
 MT_DB_URL="https://tu-dortmund.sciebo.de/s/N9Ljnt2cbFfnbMD/download/genome.fna.gz"
@@ -37,20 +36,27 @@ MT_DB_URL="https://tu-dortmund.sciebo.de/s/N9Ljnt2cbFfnbMD/download/genome.fna.g
 # ============================
 # TOOLS PATHS
 # ============================
+
+# Preprocessing
+SRATOOLS="${TOOL_DIR}/sratoolkit.3.1.1-centos_linux64/bin"
+
+# Preprocessing, heterozygsoity, runs of homozygosity, and genome visualisation
+BCFTOOLS="/${TOOL_DIR}/bcftools-1.19" 
+
+# PSMC
 PSMC="${TOOL_DIR}/psmc/psmc"
 PSMC_UTILS="${TOOL_DIR}/psmc/utils"
 PSMC_PLOT_SCRIPT="${PSMC_UTILS}/psmc_plot.pl"
 
-REPEATMODELER2="${TOOL_DIR}/RepeatModeler2"
+# Repeat annotation
+REPEATMODELER2="${TOOL_DIR}/RepeatModeler-2.0.4"
 REPEATMASKER="${TOOL_DIR}/RepeatMasker"
-BCFTOOLS="/${TOOL_DIR}/bcftools-1.19" 
-SRATOOLS="${TOOL_DIR}/sratoolkit.3.1.1-centos_linux64/bin"
 
 # ============================
 # SPECIES-SPECIFIC DIRECTORIES
 # ============================
-# You don't need to change anything here
 
+# You don't need to change anything here
 FASTQ_DIR="${WORKING_DIR}/${SPECIES}/fastq"
 FASTQC_DIR="${WORKING_DIR}/${SPECIES}/fastqc"
 VCF_DIR="${WORKING_DIR}/${SPECIES}/vcf"
@@ -62,27 +68,13 @@ PT_OUT_DIR="${WORKING_DIR}/${SPECIES}/pt"
 # ============================
 # FILE PATHS FOR OUTPUTS & INTERMEDIATES
 # ============================
-# You don't need to change anything here
 
+# You don't need to change anything here
 TARGET_LEN="${WORKING_DIR}/${SPECIES}/target_len.lst"
 BAM_FILE="${WORKING_DIR}/${SPECIES}/bwa.sorted.bam"
 IDXSTATS_INPUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_idxstats_output.txt"
 IDXSTATS_CSV="${WORKING_DIR}/${SPECIES}/idxstats_clean.csv"
 HET_RESULTS="${WORKING_DIR}/${SPECIES}/heterozygosity_results.txt"
-
-
-RoH_PLOT="${SCRIPTS}/all_roh_bar_plots.R"
-
-MITO_TREE_PLOT="${SCRIPTS}/phylotree.py"
-
-UNMAPPED_BAM="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.bam"
-UNMAPPED_FASTQ="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.fastq"
-KRAKEN_OUTPUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.kraken"
-KRAKEN_REPORT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.kreport"
-CLASSIFIED_OUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_classified"
-UNCLASSIFIED_OUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unclassified"
-KREPORT_TO_KRONA_SCRIPT="${SCRIPTS}/kreport2krona.py"
-KRONA_HTML="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.krona.html"
 
 # ======================================
 # PREPROCESSING: TRIMMOMATIC
@@ -140,19 +132,35 @@ IDXSTATS_CUSTOM_COLORS=""
 # ============================
 # HETEROZYGOSITY
 # ============================
+
 # Number of scaffolds to plot
 TOP_SCAFFOLDS=20
+HET_PLOT_COLOR="skyblue"
 HET_PLOT_SCRIPT="${SCRIPTS}/plot_heterozygosity.R"
+
 
 # ============================
 # RUNS OF HOMOZYGOSITY
 # ============================
+
 ROH_MIN_GQ=30
 ROH_DEFAULT_AF=0.4
+
+# ROH plotting
+ROH_PLOT_SCRIPT="${SCRIPTS}/plot_roh.R"
+
+ROH_COUNT_COLOR="#48c9b0"
+ROH_LENGTH_COLOR="#f5b041"
+
+# ROH length bins (Mb)
+ROH_BINS="0.01,0.1,1,3,Inf"
+ROH_BIN_LABELS="10kbp-0.1Mbp,0.1-1Mbp,1-3Mbp,>3Mbp"
+
 
 # ============================
 # PSMC
 # ============================
+
 DIPLOID_FASTQ="${WORKING_DIR}/${SPECIES}/diploid.fq.gz"
 DIPLOID_PSMCFA="${WORKING_DIR}/${SPECIES}/diploid.psmcfa"
 DIPLOID_PSMC="${WORKING_DIR}/${SPECIES}/diploid.psmc"
@@ -165,35 +173,63 @@ PSMC_PATTERN="2+2+25*2+4+6"
 MUTATION_RATE=1.25e-8
 GENERATION_TIME=25
 
-# ============================
-# MITOGENOME ASSEMBLY
-# ============================
-GETORGANELLE_TYPE="animal_mt"  # embplant_mt, fungus_mt, etc.
-GETORGANELLE_READS=20
-
-MIN_MITO_SCAFFOLD_WARNING=200000
-MIN_PLASTID_SCAFFOLD_WARNING=120000
 
 # ============================
-# PHYLOGENETIC ANALYSIS
+# UNMAPPED READS
 # ============================
-N_BLAST_HITS=10
-MAFFT_OPTS="--auto"
-FASTTREE_OPTS="-nt"
-PHYLOTREE_SCRIPT="${SCRIPTS}/phylotree.py"
+
+KRAKEN_DB="/vol/storage/kraken_database/"
+KRAKEN_CONDA_ENV=kraken
+KREPORT_TO_KRONA_SCRIPT="${SCRIPTS}/kreport2krona.py"
+
+UNMAPPED_BAM="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.bam"
+UNMAPPED_FASTQ="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.fastq"
+KRAKEN_OUTPUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.kraken"
+KRAKEN_REPORT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.kreport"
+CLASSIFIED_OUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_classified"
+UNCLASSIFIED_OUT="${WORKING_DIR}/${SPECIES}/${SPECIES}_unclassified"
+KRONA_HTML="${WORKING_DIR}/${SPECIES}/${SPECIES}_unmapped.krona.html"
+
 
 # ============================
-# BLAST PARAMETERS
+# GETORGANELLE
 # ============================
-BLAST_MAX_TARGET_SEQS=50
-BLAST_WORD_SIZE=20
+
+GETORGANELLE_TYPE="animal_mt"  # Type of organelle genome to assemble
+GETORGANELLE_READ_ROUNDS=10    # Number of iterative read-extraction rounds
+
+# ============================
+# BLAST SETTINGS
+# ============================
+
+N_BLAST_HITS=5
+BLAST_MAX_TARGET_SEQS=10 
+BLAST_WORD_SIZE=11
+
+# ============================
+# ALIGNMENT AND TREE
+# ============================
+MAFFT_OPTS="--auto" 
+FASTTREE_OPTS="-nt" 
+
+PHYLOTREE_SCRIPT="$SCRIPTS/phylotree.py" 
+
 
 # ============================
 # NUMT DETECTION
 # ============================
+
 NUMT_BLAST_OUT="${WORKING_DIR}/${SPECIES}/${SPECIES}.blast.out"
 NUMT_BLAST_CLEAN="${WORKING_DIR}/${SPECIES}/${SPECIES}.blast.clean.out"
 NUMT_SEP_FA="${WORKING_DIR}/${SPECIES}/${SPECIES}.sep.fa"
+
+# BLAST parameters for NUMT detection
+NUMT_WORD_SIZE=20        # Word size for BLAST search (lower = more sensitive)
+NUMT_EVALUE=1e-10        # E-value threshold (lower = more stringent)
+
+# R script for NUMT visualization
+NUMT_PLOT_SCRIPT="${SCRIPTS}/numt_visual.04.R"
+
 
 # ============================
 # REPEAT ANNOTATION
@@ -207,6 +243,36 @@ RM_DIR="${WORKING_DIR}/RepeatMasker"
 # ============================
 # CIRCOS PLOT
 # ============================
+
+BIN_SIZE=100000
+
+# Number of plotted scaffolds
+TOP_SCAFFOLDS=20
+
+# Options: LG | SCAFFOLD | PREFIX | CUSTOM
+CHR_NAMING_MODE=LG
+
+# Used only if CHR_NAMING_MODE=PREFIX
+CHR_PREFIX=chr
+
+# Used only if CHR_NAMING_MODE=CUSTOM
+# Example: CHR_NAME_MAP=/path/to/chromosome_map.tsv
+CHR_NAME_MAP=""
+
+# CIRCOS colours
+__KARYO_COL__="e4daed"
+__GC_COL__="purple"
+__COV_COL__="red"
+__HET_COL__="greens-3-seq"
+__REPEAT_COL__="blues-3-seq"
+
+CIRCOS_BIN="/vol/storage/software/circos-0.69-9/bin/circos"
+CIRCOS_CONF_TEMPLATE="${SCRIPTS}/circos.conf"
+
+CIRCOS_OVERLAY_SCRIPT="${SCRIPTS}/overlay.py"
+CIRCOS_LEGEND_IMAGE="${SCRIPTS}/legend.png"
+
+REPEATS_BED="${WORKING_DIR}/${SPECIES}/repeats.bed"
 
 # Circos include paths
 CIRCOS_COLORS_CONF="${TOOL_DIR}/circos-0.69-9/etc/colors.conf"
