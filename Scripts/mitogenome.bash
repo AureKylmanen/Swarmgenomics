@@ -102,7 +102,7 @@ if [[ -z "$FILE_MITO" ]]; then
     exit 1
 fi
 
-echo "Selecting longest mitochondrial scaffold..."
+echo "✅ Selecting longest mitochondrial scaffold..."
 FIXED_MITO="$MITO_OUT/mitogenome_cleaned.fasta"
 awk '/^>/{print ">seq" NR; next} {print}' "$FILE_MITO" > "$FIXED_MITO"
 
