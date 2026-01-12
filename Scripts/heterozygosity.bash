@@ -32,6 +32,7 @@ source "$PARAMS_FILE"
 # REQUIRED PARAMETERS CHECK
 # ============================
 : "${VCF_DIR:?Missing VCF_DIR in params file}"
+: "${BCFTOOLS:?Missing BCFTOOLS in params file}"
 : "${HET_RESULTS:?Missing HET_RESULTS in params file}"
 : "${HET_PLOT_SCRIPT:?Missing HET_PLOT_SCRIPT in params file}"
 
