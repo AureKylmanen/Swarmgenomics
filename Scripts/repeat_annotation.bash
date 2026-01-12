@@ -2,7 +2,6 @@
 # Script Name: repeat_annotation.bash
 # Description: De novo repeat annotation using RepeatModeler2 and RepeatMasker
 # Author: Justin Wilcox
-# Edited by: Aure Kylmänen
 # ====================================
 
 set -euo pipefail
@@ -35,11 +34,15 @@ source "$PARAMS_FILE"
 # ============================
 # SETUP DIRECTORIES
 # ============================
-WORKDIR="${WORKING_DIR}/${SPECIES}/repeat_annotation"
-RM2_WORKDIR="${RM2_DIR}/${SPECIES}"
-RM_WORKDIR="${RM_DIR}/${SPECIES}"
 
+# Workdir for this analysis
+WORKDIR="${WORKING_DIR}/${SPECIES}"
+RM2_WORKDIR="${RM2_DIR}"
+RM_WORKDIR="${RM_DIR}"
+
+# Make sure directories exist
 mkdir -p "$WORKDIR" "$RM2_WORKDIR" "$RM_WORKDIR"
+
 
 # ============================
 # PREPARE REFERENCE
