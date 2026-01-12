@@ -36,6 +36,7 @@ source "$PARAMS_FILE"
 : "${WORKING_DIR:?Missing WORKING_DIR}"
 : "${VCF_DIR:?Missing VCF_DIR}"
 : "${RESULTS_DIR:?Missing RESULTS_DIR}"
+: "${BCFTOOLS:?Missing BCFTOOLS}"
 : "${ROH_MIN_GQ:?Missing ROH_MIN_GQ}"
 : "${ROH_DEFAULT_AF:?Missing ROH_DEFAULT_AF}"
 : "${ROH_PLOT_SCRIPT:?Missing ROH_PLOT_SCRIPT}"
@@ -70,12 +71,12 @@ fi
 # RUN ROH
 # ============================
 echo "Merging vcf files"
-bcftools merge --force-samples -O z \
+${BCFTOOLS} merge --force-samples -O z \
   -o "${VCF_DIR}/merged.vcf.gz" \
   "${VCF_FILES[@]}"
 
 echo "Starting RoH analysis"
-bcftools roh \
+${BCFTOOLS} roh \
   -G "$ROH_MIN_GQ" \
   --AF-dflt "$ROH_DEFAULT_AF" \
   "${VCF_DIR}/merged.vcf.gz" \
