@@ -53,6 +53,18 @@ vim filename.txt
 - Press i to enter insert mode and edit the file.
 - Press Esc, then type :wq to save and quit.
 
+### Which parameters do I need to change in params.txt before running the pipeline?
+Most users only need to modify a small subset of parameters in params.txt before running SwarmGenomics. These typically include:
+- Computational resources:
+  - ```THREADS``` — set this according to the number of CPU cores available on your system.
+- Working and software directories (required):
+  - ```WORKING_DIR```, ```TOOL_DIR```, and ```SCRIPTS``` — update these to match where SwarmGenomics project, required software, and scripts are located on your system.
+- Input data paths:
+  - Paths to input FASTQ, BAM, or reference files are automatically constructed using ```WORKING_DIR``` and ```SPECIES```, but users should ensure their data are placed in the expected directories.
+
+### What if I want to change a parameter and then redo a step?
+Simply edit the relevant value in params.txt (for example, scaffold size or allele frequency thresholds) and run the script again. The updated parameters will be applied automatically, and the pipeline will regenerate outputs accordingly. In some cases, such as for **Genome Visualisation**, rerunning the script will only replot the existing results, and if you wish to redo for example heterozygsoity estimate, you will need to remove the previous files.
+
 ### "No such file or directory" error
 
 This usually means the software cannot find the file at the path you provided. Double-check that the file exists, that you’re in the correct working directory, and that the file name matches exactly (case-sensitive on Linux/Mac). If your file is in another folder, be sure to include the full path.
