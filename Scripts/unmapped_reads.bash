@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script Name: unmapped_reads.bash
 # Description: Extract unmapped reads, classify with Kraken2, and generate Krona plots
-# Authors: Nikolas Vellnow & Aure Kylmänen
+# Author: Nikolas Vellnow
 # ====================================
 
 set -euo pipefail
