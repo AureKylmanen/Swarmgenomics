@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script Name: preprocessing.bash
-# Description: Read preprocessing, alignment, variant calling, VCF preparation and diploid.fq creation
+# Description: Read preprocessing, alignment, variant calling, and VCF preparation
 # Author: Aure Kylmänen
 # ====================================
 set -euo pipefail
