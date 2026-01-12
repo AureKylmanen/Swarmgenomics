@@ -71,12 +71,12 @@ fi
 # RUN ROH
 # ============================
 echo "Merging vcf files"
-${BCFTOOLS} merge --force-samples -O z \
+"${BCFTOOLS}/bcftools" merge --force-samples -O z \
   -o "${VCF_DIR}/merged.vcf.gz" \
   "${VCF_FILES[@]}"
 
 echo "Starting RoH analysis"
-${BCFTOOLS} roh \
+"${BCFTOOLS}/bcftools" roh \
   -G "$ROH_MIN_GQ" \
   --AF-dflt "$ROH_DEFAULT_AF" \
   "${VCF_DIR}/merged.vcf.gz" \
