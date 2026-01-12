@@ -236,8 +236,8 @@ NUMT_PLOT_SCRIPT="${SCRIPTS}/numt_visual.04.R"
 # ============================
 RM_THREADS=$THREADS
 RM_GENOME_SAMPLE=243000000
-RM2_DIR="${WORKING_DIR}/RepeatModeler2"
-RM_DIR="${WORKING_DIR}/RepeatMasker"
+RM2_DIR="${WORKING_DIR}/${SPECIES}/RepeatModeler2"
+RM_DIR="${WORKING_DIR}/${SPECIES}/RepeatMasker"
 
 
 # ============================
