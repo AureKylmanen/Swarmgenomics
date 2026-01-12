@@ -41,7 +41,7 @@ MT_DB_URL="https://tu-dortmund.sciebo.de/s/N9Ljnt2cbFfnbMD/download/genome.fna.g
 SRATOOLS="${TOOL_DIR}/sratoolkit.3.1.1-centos_linux64/bin"
 
 # Preprocessing, heterozygsoity, runs of homozygosity, and genome visualisation
-BCFTOOLS="/${TOOL_DIR}/bcftools-1.19" 
+BCFTOOLS="${TOOL_DIR}/bcftools-1.19" 
 
 # PSMC
 PSMC="${TOOL_DIR}/psmc/psmc"
