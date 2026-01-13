@@ -39,7 +39,6 @@ source "$PARAMS_FILE"
 : "${PSMC_T:?Missing PSMC_T in params file}"
 : "${PSMC_R:?Missing PSMC_R in params file}"
 : "${PSMC_PATTERN:?Missing PSMC_PATTERN in params file}"
-: "${PSMC_PLOT_SCRIPT:?Missing PSMC_PLOT_SCRIPT in params file}"
 
 # ============================
 # DIRECTORIES
@@ -80,11 +79,6 @@ echo "Generating historical inference scripts..."
 
 "${PSMC_UTILS}/psmc_plot.pl" -u "${MUTATION_RATE}" -g "${GENERATION_TIME}" -p "${WORKING_DIR}/${SPECIES}/diploid" "${DIPLOID_PSMC}"
 
-# ============================
-# PLOT AS PNG
-# ============================
-echo "Plotting PSMC results..."
-python "$PSMC_PLOT_SCRIPT" diploid "${DIPLOID_PSMC}"
 
 # ============================
 # COPY RESULTS
