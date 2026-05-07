@@ -93,6 +93,14 @@ fastqc -t "$THREADS" -o "$FASTQC_DIR" \
 # STEP 3: TRIMMOMATIC
 # ============================
 
+# Set Java heap size to half of available memory
+TOTAL_MEM_GB=$(free -g | awk '/^Mem:/{print $2}')
+JAVA_HEAP=$((TOTAL_MEM_GB / 2))
+
+# Export Java options for all Java programs in this script
+export _JAVA_OPTIONS="-Xmx${JAVA_HEAP}G"
+
+echo "Setting Java heap size to $_JAVA_OPTIONS"
 echo "Trimming reads with Trimmomatic..."
 
 trimmomatic PE -threads "$THREADS" \
