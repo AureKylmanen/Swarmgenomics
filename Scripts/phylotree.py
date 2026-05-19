@@ -56,5 +56,5 @@ canvas = tree.draw(
 # ============================
 # Render to PNG
 # ============================
-toyplot.png.render(canvas, out_png)
+toyplot.png.render(canvas, str(out_png))
 print(f"✅ Tree plotted: {out_png}")
