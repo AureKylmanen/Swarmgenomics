@@ -85,6 +85,6 @@ echo "Generating historical inference scripts..."
 # ============================
 cp diploid.psmc "${RESULTS_DIR}/" 2>/dev/null || echo "⚠️ Failed to copy diploid.psmc"
 cp "${SPECIES}_ms-cmd.sh" "${RESULTS_DIR}/" 2>/dev/null || echo "⚠️ Failed to copy ms command"
-cp diploid*.png "${RESULTS_DIR}/" 2>/dev/null || echo "⚠️ Failed to copy PSMC plots"
+cp diploid.pdf "${RESULTS_DIR}/" 2>/dev/null || echo "⚠️ Failed to copy PSMC plots"
 
 echo "PSMC analysis completed successfully."
