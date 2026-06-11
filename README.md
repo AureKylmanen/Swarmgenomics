@@ -9,7 +9,7 @@ SwarmGenomics compromises of a step-by-step process of whole-genome assembly, fo
 
 For data download, teaching material and interactive analysis, look at our data portal: https://aurekylmanen.github.io/Swarmgenomics/
 
-For more information about SwarmGenomics, please see our preprint https://www.biorxiv.org/content/10.1101/2025.08.13.670070v1
+For more information on SwarmGenomics, please see our article: https://onlinelibrary.wiley.com/doi/full/10.1111/1755-0998.70119
 
 ## Overview of the Pipeline
 <img width="5113" height="2625" alt="swarmgenomics_pipeline" src="https://github.com/user-attachments/assets/f1b051a2-4cdf-4a0f-87c7-a97968415f1f" />
