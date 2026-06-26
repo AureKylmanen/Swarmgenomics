@@ -109,7 +109,7 @@ GENOME_SIZE=$(grep -v ">" "$RM_WORKDIR/$REF_BASENAME" | wc -m)
 
 perl "$REPEATMASKER/util/calcDivergenceFromAlign.pl" \
     -s "$RM_WORKDIR/${REF_BASENAME}.divsum" \
-    -a "$RM_WORKDIR/${REF_BASENAME}.align" \
+    -a "$RM_WORKDIR/${REF_BASENAME}.GC-Adjusted.align" \
     "$RM_WORKDIR/${REF_BASENAME}.align"
 
 perl "$REPEATMASKER/util/createRepeatLandscape.pl" \
