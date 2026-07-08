@@ -130,7 +130,9 @@ echo "Indexing reference genome..."
 bwa index "$GENOME_FILE"
 
 echo "Aligning reads..."
-bwa mem -t "$THREADS" "$GENOME_FILE" \
+bwa mem -t "$THREADS" \
+    -R "@RG\tID:${SRA_FILE}\tSM:${SRA_FILE}\tLB:${SRA_FILE}\tPL:ILLUMINA" \
+    "$GENOME_FILE" \
     "${FASTQ_DIR}/${SRA_FILE}_1_paired.fastq.gz" \
     "${FASTQ_DIR}/${SRA_FILE}_2_paired.fastq.gz" \
     > "${SPECIES_DIR}/${SRA_FILE}.sam"
